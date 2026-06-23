@@ -465,8 +465,8 @@ body{background:radial-gradient(ellipse 80% 60% at 20% 10%,#112b57 0%,#071427 50
     <div class="si on" data-m="0" onclick="goMod(0)"><div class="ic">📊</div><span class="si-lbl">Metas AIH's</span></div>
     <div class="si" data-m="1" onclick="goMod(1)"><div class="ic">💰</div><span class="si-lbl">Valores por AIH's</span></div>
     <div class="si" data-m="2" onclick="goMod(2)"><div class="ic">🏥</div><span class="si-lbl">Diárias de UTI</span></div>
+    <div class="si" data-m="3" onclick="goMod(3)"><div class="ic">📈</div><span class="si-lbl">Análise Financeira</span></div>
     <div class="si dim"><div class="ic">📋</div><span class="si-lbl">Contratos</span></div>
-    <div class="si dim"><div class="ic">📈</div><span class="si-lbl">Relatórios</span></div>
     <div class="si dim"><div class="ic">⚙️</div><span class="si-lbl">Configurações</span></div>
   </nav>
   <!-- Filtros removidos conforme solicitado -->
@@ -581,41 +581,50 @@ body{background:radial-gradient(ellipse 80% 60% at 20% 10%,#112b57 0%,#071427 50
 
   <!-- ════ MÓDULO 1 — VALORES POR AIH's ══════════════════════ -->
   <div class="mod" id="mod1">
-    <div class="krow krow-sm" id="kpi1"></div>
-    <div class="cg c12">
-      <div class="cc fade-in">
-        <div class="ct">Faturamento por Especialidade</div>
-        <div class="cs">Total Conta R$ — composição por grupo clínico</div>
-        <div id="ch4" style="height:240px"></div>
-      </div>
-      <div class="cc fade-in">
-        <div class="ct">Custo Médio de Faturamento por Especialidade</div>
-        <div class="cs">Valor R$ médio por AIH — comparativo entre especialidades</div>
-        <div id="ch5" style="height:240px"></div>
+    <div id="kpi1" style="display:none"></div>
+    <div style="background:linear-gradient(135deg,rgba(245,158,11,.15),rgba(245,158,11,.05));border:1px solid rgba(245,158,11,.4);border-radius:16px;padding:18px 24px;margin-bottom:20px;display:flex;align-items:center;gap:14px">
+      <span style="font-size:28px">🚧</span>
+      <div>
+        <div style="font-family:var(--fh);font-size:16px;font-weight:800;color:#F59E0B;margin-bottom:3px">Módulo em Desenvolvimento</div>
+        <div style="font-size:12px;color:rgba(148,163,184,.8)">Em breve integração completa com MV2000.</div>
       </div>
     </div>
-    <div class="sh">Ranking de Procedimentos <span class="tag tag-b">R_PROD_FINANCIAMENTO · Top 15</span></div>
+    <div class="cg c2" style="margin-top:6px">
+      <div class="cc fade-in">
+        <div class="ct">Valor por Clínica — Total da Conta R$</div>
+        <div class="cs">Composição do faturamento bruto por especialidade clínica</div>
+        <div id="ch4" style="height:260px"></div>
+      </div>
+      <div class="cc fade-in">
+        <div class="ct">Ticket Médio por Especialidade</div>
+        <div class="cs">Valor R$ médio por AIH — comparativo entre especialidades</div>
+        <div id="ch5" style="height:260px"></div>
+      </div>
+    </div>
+    <div class="sh" style="margin-top:18px">Ranking de Procedimentos <span class="tag tag-b">Top 15</span></div>
     <div class="cg c2">
       <div class="cc fade-in">
         <div class="ct">Mais Realizados — Quantidade</div>
-        <div class="cs">Procedimentos por nº de AIH's — col. E da planilha R_PROD_FINANCIAMENTO</div>
+        <div class="cs">Procedimentos por nº de AIH's</div>
         <div id="rkQ" style="max-height:310px;overflow-y:auto;padding-right:2px"></div>
       </div>
       <div class="cc fade-in">
         <div class="ct">Mais Rentáveis — Faturamento R$</div>
-        <div class="cs">Procedimentos por Total Conta — col. H da planilha R_PROD_FINANCIAMENTO</div>
+        <div class="cs">Procedimentos por Total Conta</div>
         <div id="rkV" style="max-height:310px;overflow-y:auto;padding-right:2px"></div>
       </div>
-    </div>
-    <div class="cc fade-in" style="margin-top:14px">
-      <div class="ct">Caráter de Atendimento — Eletivo × Urgência (Colunas Agrupadas)</div>
-      <div class="cs">Realizado vs. Contratado — Eletivo (04/2026) e Urgência (05/2026)</div>
-      <div id="ch6" style="height:190px"></div>
     </div>
   </div>
 
   <!-- ════ MÓDULO 2 — DIÁRIAS DE UTI ══════════════════════════ -->
   <div class="mod" id="mod2">
+    <div style="background:linear-gradient(135deg,rgba(245,158,11,.15),rgba(245,158,11,.05));border:1px solid rgba(245,158,11,.4);border-radius:16px;padding:18px 24px;margin-bottom:20px;display:flex;align-items:center;gap:14px">
+      <span style="font-size:28px">🚧</span>
+      <div>
+        <div style="font-family:var(--fh);font-size:16px;font-weight:800;color:#F59E0B;margin-bottom:3px">Módulo em Desenvolvimento</div>
+        <div style="font-size:12px;color:rgba(148,163,184,.8)">Em breve integração completa com MV2000.</div>
+      </div>
+    </div>
     <div class="sh">Indicadores de UTI <span class="tag tag-g">Período Atual</span></div>
     <div class="ubg" id="ubg"></div>
     <div class="sh">Desempenho Detalhado por Tipo de UTI <span class="tag tag-a">Diárias vs. Contrato</span></div>
@@ -631,6 +640,49 @@ body{background:radial-gradient(ellipse 80% 60% at 20% 10%,#112b57 0%,#071427 50
     <div class="cg c2">
       <div class="cc fade-in"><div class="ct">Meta de Diárias Mensais UTI</div><div class="cs">Projeção de contratos UTI ao longo do ano</div><div id="ch9" style="height:200px"></div></div>
       <div class="cc fade-in"><div class="ct">Custo Médio por Diária de UTI</div><div class="cs">Valor R$ por diária realizada por tipo</div><div id="ch10" style="height:200px"></div></div>
+    </div>
+  </div>
+
+
+  <!-- ════ MÓDULO 3 — ANÁLISE FINANCEIRA ════════════════════ -->
+  <div class="mod" id="mod3">
+    <div style="background:linear-gradient(135deg,rgba(245,158,11,.15),rgba(245,158,11,.05));border:1px solid rgba(245,158,11,.4);border-radius:16px;padding:18px 24px;margin-bottom:20px;display:flex;align-items:center;gap:14px">
+      <span style="font-size:28px">🚧</span>
+      <div>
+        <div style="font-family:var(--fh);font-size:16px;font-weight:800;color:#F59E0B;margin-bottom:3px">Módulo em Desenvolvimento</div>
+        <div style="font-size:12px;color:rgba(148,163,184,.8)">Os dados operacionais abaixo são estimativas. Em breve integração completa com MV2000.</div>
+      </div>
+    </div>
+    <div class="sh">Meta × Realizado <span class="tag tag-g">Competência Atual</span></div>
+    <div class="kpis" id="kpi3"></div>
+
+    <div class="cg c2" style="margin-top:6px">
+      <div class="cc fade-in">
+        <div class="ct">Evolução do Atingimento da Meta</div>
+        <div class="cs">Produção realizada vs. meta mensal — progresso do mês</div>
+        <div id="ch_meta" style="height:220px"></div>
+      </div>
+      <div class="cc fade-in">
+        <div class="ct">Projeção Final do Mês</div>
+        <div class="cs">Tendência de fechamento vs. meta pactuada</div>
+        <div id="ch_proj" style="height:220px"></div>
+      </div>
+    </div>
+
+    <div class="sh" style="margin-top:18px">Situação Operacional das AIH's <span class="tag tag-a">Gestão de Pendências</span></div>
+    <div id="aih_status_grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px"></div>
+
+    <div class="cg c2">
+      <div class="cc fade-in">
+        <div class="ct">Distribuição por Status de AIH</div>
+        <div class="cs">Panorama operacional — pendências × prontas</div>
+        <div id="ch_aih_status" style="height:240px"></div>
+      </div>
+      <div class="cc fade-in">
+        <div class="ct">Necessidade Diária para Bater a Meta</div>
+        <div class="cs">AIH's/dia necessárias × ritmo atual</div>
+        <div id="ch_ritmo" style="height:240px"></div>
+      </div>
     </div>
   </div>
 
@@ -1031,7 +1083,7 @@ function toggleSb(){
 }
 
 /* ── Module switch ── */
-var MNAMES=['Metas AIH\'s','Valores por AIH\'s','Diárias de UTI'];
+var MNAMES=['Metas AIH\'s','Valores por AIH\'s','Diárias de UTI','Análise Financeira'];
 function goMod(i){
   document.querySelectorAll('.mod').forEach(function(m,j){m.classList.toggle('on',j===i);});
   document.querySelectorAll('.si[data-m]').forEach(function(el,j){el.classList.toggle('on',j===i);});
@@ -1191,11 +1243,8 @@ function renderAll(){
   // Filtros afetam os rankings (R_PROD tem col. complexidade/financiamento)
   var tQ=rk.tQ, tV=rk.tV;
 
-  // ─ Competência pill ──────────────────────────────────────────
-  if(d.competencia){
-    var hp=document.getElementById('hComp');
-    hp.textContent='Competência: '+d.competencia;hp.style.display='';
-  }
+  // ─ Competência pill — oculto ────────────────────────────────
+  try{document.getElementById('hComp').style.display='none';}catch(x){}
 
   // ─ KPIs Módulo 0 — COD.HTML design ────────────────────────
   var metaMS=CFG.MS[nowM];
@@ -1305,14 +1354,12 @@ function renderAll(){
       +'</div>';
   }).join('');
 
-  // ─ KPIs Módulo 1 ─────────────────────────────────────────────
-  // ─ KPIs Módulo 1 ─────────────────────────────────────────────
-  document.getElementById('kpi1').innerHTML=
-    mkK('Total AIHs',Ni(totalCalc),'','neu','📋','#3B82F6')+
-    mkK('Ticket Médio / AIH',BRL(d.ticket),'Valor médio por internação — '+BRLk(d.tot_val)+' total','neu','🏷','#06B6D4');
+  // ─ kpi1 vazio ───────────────────────────────────────────────
+  var _k1=document.getElementById('kpi1'); if(_k1) _k1.innerHTML='';
 
   // ─ Rankings ───────────────────────────────────────────────────
   mkRk('rkQ',tQ,false); mkRk('rkV',tV,true);
+  renderMod3(d);
 
   /* ════ GRÁFICOS ApexCharts ═════════════════════════════════ */
 
@@ -1345,28 +1392,23 @@ function renderAll(){
     labels:['Média Complexidade','Alta Complexidade'],
     plotOptions:{pie:{donut:{size:'65%',labels:{show:true,total:{show:true,label:'AIH\'s',color:'#94A3B8',fontSize:'11px'}}}}}});
 
-  // ch4: Faturamento por especialidade donut
-  mkC('ch4',{chart:{type:'donut',height:240},
-    series:[d.cir.val,d.cli.val,d.obs.val],
-    labels:['Cirúrgica','Clínico/Ped.','Obstetrícia'],
-    plotOptions:{pie:{donut:{size:'68%',labels:{show:true,total:{show:true,label:'Faturamento',color:'#94A3B8',fontSize:'10px',formatter:function(w){return BRLk(w.globals.seriesTotals.reduce(function(a,b){return a+b;},0));}}}}}}});
+  // ch4: Valor por Clínica — donut
+  mkC('ch4',{chart:{type:'donut',height:260},
+    series:[d.elet.val,d.urg.val,d.cli.val,d.obs.val,d.alta?d.alta.val:0],
+    labels:['Eletivo','Urgência','Clínico/Ped.','Obstetrícia','Alta Complexidade'],
+    plotOptions:{pie:{donut:{size:'65%',labels:{show:true,total:{show:true,label:'Total',color:'#94A3B8',fontSize:'11px',formatter:function(w){return BRLk(w.globals.seriesTotals.reduce(function(a,b){return a+b;},0));}}}}}}});
 
-  // ch5: Custo médio por especialidade (horizontal bar)
-  mkC('ch5',{chart:{type:'bar',height:240},
-    series:[{name:'Custo Médio / AIH (R$)',data:[
-      d.cir.real?+(d.cir.val/d.cir.real).toFixed(2):0,
+  // ch5: Ticket Médio por Especialidade (horizontal bar)
+  mkC('ch5',{chart:{type:'bar',height:260},
+    series:[{name:'Ticket Médio R$',data:[
+      d.elet.real?+(d.elet.val/d.elet.real).toFixed(2):0,
+      d.urg.real?+(d.urg.val/d.urg.real).toFixed(2):0,
       d.cli.real?+(d.cli.val/d.cli.real).toFixed(2):0,
-      d.obs.real?+(d.obs.val/d.obs.real).toFixed(2):0]}],
-    xaxis:{categories:['Cirúrgica','Clínico/Ped.','Obstetrícia']},
-    plotOptions:{bar:{horizontal:true,borderRadius:5,barHeight:'50%'}},
-    colors:['#8B5CF6'],yaxis:{labels:{style:{colors:'#64748B',fontSize:'11px'}}}});
-
-  // ch6: Eletivo × Urgência — realizado vs contratado (grouped columns)
-  mkC('ch6',{chart:{type:'bar',height:190},
-    series:[{name:'Eletivo',data:[d.elet.real,d.elet.contr]},{name:'Urgência',data:[d.urg.real,d.urg.contr]}],
-    xaxis:{categories:['Realizado','Contratado']},
-    plotOptions:{bar:{borderRadius:5,columnWidth:'55%'}},
-    colors:['#06B6D4','#EF4444']});
+      d.obs.real?+(d.obs.val/d.obs.real).toFixed(2):0,
+      (d.alta&&d.alta.real)?+(d.alta.val/d.alta.real).toFixed(2):0]}],
+    xaxis:{categories:['Eletivo','Urgência','Clínico/Ped.','Obstetrícia','Alta Compl.']},
+    plotOptions:{bar:{horizontal:true,borderRadius:5,barHeight:'45%'}},
+    colors:['#F59E0B'],yaxis:{labels:{style:{colors:'#64748B',fontSize:'11px'}}}});
 
   // ch7: UTI pie
   mkC('ch7',{chart:{type:'pie',height:240},
@@ -1403,6 +1445,111 @@ function renderAll(){
     xaxis:{categories:['UTI Adulto','UTI Pediátrica','UTIN Neonatal','UTI Queimados']},
     plotOptions:{bar:{horizontal:true,borderRadius:5,barHeight:'45%'}},
     colors:['#8B5CF6'],yaxis:{labels:{style:{colors:'#64748B',fontSize:'10px'}}}});
+}
+
+/* ── Módulo 3 — Análise Financeira ── */
+function renderMod3(d){
+  var now=new Date();
+  var diasNoMes=new Date(now.getFullYear(),now.getMonth()+1,0).getDate();
+  var diaAtual=now.getDate();
+  var diasRestantes=diasNoMes-diaAtual;
+
+  var metaMes=d.meta_aih||0;
+  var faturadas=d.prod_geral||0;
+  var pctAting=metaMes?(faturadas/metaMes*100):0;
+  var difMeta=faturadas-metaMes;
+  var ritmoAtual=diaAtual>0?faturadas/diaAtual:0;
+  var projecao=Math.round(ritmoAtual*diasNoMes);
+  var metaAtingida=projecao>=metaMes;
+  var necessariaDia=diasRestantes>0?Math.ceil(Math.max(0,metaMes-faturadas)/diasRestantes):0;
+
+  // Dados demo para situação operacional (em produção viriam do sistema)
+  var aihStatus={
+    abertas:Math.round(faturadas*0.12),
+    semAlta:Math.round(faturadas*0.08),
+    inconsistencia:Math.round(faturadas*0.05),
+    prontas:Math.round(faturadas*0.75),
+    semAIH:Math.round(faturadas*0.04),
+    rejeitadas:Math.round(faturadas*0.03),
+    vencidas:Math.round(faturadas*0.02),
+    canceladas:Math.round(faturadas*0.01),
+  };
+
+  // KPIs
+  document.getElementById('kpi3').innerHTML=[
+    {t:'AIHs Meta do Mês',              v:Ni(metaMes),                          ico:'🎯',ac:'#3B82F6'},
+    {t:'AIHs Faturadas',                v:Ni(faturadas),                        ico:'✅',ac:'#22C55E'},
+    {t:'Total Geral AIH Realizadas',    v:BRL(d.tot_val||0),                    ico:'💰',ac:'#22C55E',inline:true},
+    {t:'% Atingimento da Meta',         v:pctAting.toFixed(1)+'%',             ico:'📊',ac:pctAting>=100?'#22C55E':'#F59E0B'},
+    {t:'Diferença para Meta',           v:(difMeta>=0?'+':'')+Ni(difMeta),     ico:difMeta>=0?'📈':'📉',ac:difMeta>=0?'#22C55E':'#EF4444'},
+    {t:'Projeção Final do Mês',         v:Ni(projecao),                        ico:'🔮',ac:'#8B5CF6'},
+    {t:'Dias Restantes',                v:Ni(diasRestantes)+' dias',           ico:'📅',ac:'#06B6D4'},
+  ].map(function(k){
+    if(k.inline){
+      return '<div class="kpi-card" style="grid-column:span 2">'
+        +'<div class="kpi-top" style="margin-bottom:10px"><div class="kpi-title">'+k.t+'</div><span style="font-size:22px">'+k.ico+'</span></div>'
+        +'<div style="font-family:var(--fh);font-size:32px;font-weight:800;color:'+k.ac+';white-space:nowrap;letter-spacing:-1px">'+k.v+'</div>'
+        +'</div>';
+    }
+    return '<div class="kpi-card">'
+      +'<div class="kpi-top"><div class="kpi-title">'+k.t+'</div><div class="kpi-icon">'+k.ico+'</div></div>'
+      +'<div class="kpi-value" style="font-size:36px;color:'+k.ac+'">'+k.v+'</div>'
+      +'</div>';
+  }).join('');
+
+  // Grid de situação operacional
+  var statusCards=[
+    {l:'AIHs Abertas',        v:aihStatus.abertas,      ic:'🔓',cor:'#F59E0B'},
+    {l:'AIHs sem Alta',       v:aihStatus.semAlta,      ic:'🛏',cor:'#EF4444'},
+    {l:'Com Inconsistência',  v:aihStatus.inconsistencia,ic:'⚠️',cor:'#F59E0B'},
+    {l:'Prontas p/ Envio',    v:aihStatus.prontas,      ic:'📤',cor:'#22C55E'},
+    {l:'Internações sem AIH', v:aihStatus.semAIH,       ic:'🚫',cor:'#EF4444'},
+    {l:'AIHs Rejeitadas',     v:aihStatus.rejeitadas,   ic:'❌',cor:'#EF4444'},
+    {l:'AIHs Vencidas',       v:aihStatus.vencidas,     ic:'⏰',cor:'#8B5CF6'},
+    {l:'AIHs Canceladas',     v:aihStatus.canceladas,   ic:'🗑',cor:'#64748B'},
+  ];
+  document.getElementById('aih_status_grid').innerHTML=statusCards.map(function(s){
+    return '<div class="kpi-card" style="padding:14px 16px">'
+      +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">'
+      +'<span style="font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:var(--txt3)">'+s.l+'</span>'
+      +'<span style="font-size:18px">'+s.ic+'</span></div>'
+      +'<div style="font-family:var(--fh);font-size:32px;font-weight:800;color:'+s.cor+'">'+Ni(s.v)+'</div>'
+      +'</div>';
+  }).join('');
+
+  // ch_meta: progresso do mês (gauge via radialBar)
+  mkC('ch_meta',{chart:{type:'radialBar',height:220},
+    series:[Math.min(100,pctAting).toFixed(1)],
+    plotOptions:{radialBar:{hollow:{size:'55%'},dataLabels:{name:{show:true,label:'Atingimento'},
+      value:{fontSize:'28px',fontWeight:800,formatter:function(v){return v+'%';}}}}},
+    labels:['Atingimento'],
+    colors:[pctAting>=100?'#22C55E':pctAting>=70?'#F59E0B':'#EF4444']});
+
+  // ch_proj: projeção vs meta (bar)
+  mkC('ch_proj',{chart:{type:'bar',height:220},
+    series:[{name:'Realizado',data:[faturadas]},{name:'Projeção',data:[projecao]},{name:'Meta',data:[metaMes]}],
+    xaxis:{categories:['AIH\'s']},
+    plotOptions:{bar:{columnWidth:'45%',borderRadius:5}},
+    colors:['#3B82F6','#8B5CF6','#F59E0B'],
+    annotations:{yaxis:[{y:metaMes,borderColor:'#F59E0B',borderWidth:2,label:{text:'Meta',style:{color:'#fff',background:'#F59E0B'}}}]}});
+
+  // ch_aih_status: donut pendências
+  mkC('ch_aih_status',{chart:{type:'donut',height:240},
+    series:[aihStatus.prontas,aihStatus.abertas,aihStatus.semAlta,aihStatus.inconsistencia,aihStatus.rejeitadas],
+    labels:['Prontas','Abertas','Sem Alta','Inconsistência','Rejeitadas'],
+    colors:['#22C55E','#F59E0B','#EF4444','#F59E0B','#8B5CF6'],
+    plotOptions:{pie:{donut:{size:'62%'}}}});
+
+  // ch_ritmo: necessidade diária vs ritmo atual (linha)
+  mkC('ch_ritmo',{chart:{type:'line',height:240},
+    series:[
+      {name:'Ritmo Atual (AIH/dia)',data:Array.from({length:diaAtual},function(_,i){return +ritmoAtual.toFixed(1);})},
+      {name:'Necessário (AIH/dia)',data:Array.from({length:diasNoMes},function(_,i){return i<diaAtual?null:necessariaDia;})}
+    ],
+    xaxis:{categories:Array.from({length:diasNoMes},function(_,i){return 'Dia '+(i+1);}),
+      labels:{style:{fontSize:'9px'}}},
+    stroke:{curve:'smooth',width:[2,2],dashArray:[0,5]},
+    colors:['#3B82F6','#EF4444'],markers:{size:[4,4]}});
 }
 
 /* ── Export CSV dos dados do dashboard ── */
