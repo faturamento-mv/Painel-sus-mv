@@ -719,7 +719,7 @@ var CFG = {
   TIMEOUT: 14000,
 
   // ─── 6. Última atualização manual (atualizado automaticamente) ─
-  UPD_MANUAL: '24/06/2026, 09:10',
+  UPD_MANUAL: '24/06/2026, 14:00',
 
   // ─── 5. Metas mensais Jan–Dez ─────────────────────────────────
   MM: [1668,1804,1414,1562,1498,1427,1635,1494,1493,1726,1103,2059],
@@ -1004,26 +1004,26 @@ function demoResumo(){
   var c=function(r,v,co,m,d,g,l){return{real:r,val:v,contr:co,meta:m,dif:d,gval:g,lbl:l};};
   var u=function(r,v,co,m,d,g,l){return{dias:r,val:v,contr:co,meta:m,dif:d,gval:g,lbl:l};};
   return{
-    competencia:'02/2028',meta_aih:1427,prod_geral:1158,ating_pct:0.8115,diferenca:-269,
+    competencia:'03/2028',meta_aih:1427,prod_geral:1194,ating_pct:0.8367,diferenca:-233,
     cir: {lbl:'CIRURGICA',labelOnly:true,real:0,val:0,contr:0,meta:0,dif:0,gval:0},
-    elet:c( 83,  131441.89,  82,  61471.63,    1,   69970.26,'Eletivo'),
-    urg: c(283,  549914.35, 344, 554200.76,  -61,   -4286.41,'Urgencia'),
-    cli: c(402,  706910.75, 360, 472909.04,   42,  234001.71,'CLÍNICO/PEDIATRIA'),
-    obs: c(165,  150383.90, 303, 247857.03, -138,  -97473.13,'OBSTETRÍCIA'),
-    mTot:c(940, 1543632.83,1089,1336438.46, -149, 1543781.83,"Total AIH's de Média Complexidade - MAC"),
-    alta:c(218, 1638919.35, 229,1426994.18,  -11,  211925.17,"Total AIH's de  ALTA COMPLEXIDADE - MAC"),
+    elet:c( 89,1132455.62,  82,  61471.63,    7, 1070983.99,'Eletivo'),
+    urg: c(293, 611359.33, 344, 554200.76,  -51,   57158.57,'Urgencia'),
+    cli: c(461, 489504.07, 360, 472909.04,  101,   16595.03,'CLÍNICO/PEDIATRIA'),
+    obs: c(161, 151458.13, 303, 247857.03, -142,  -96398.90,'OBSTETRÍCIA'),
+    mTot:c(966,1616453.23,1089,1336438.46, -123, 1616576.23,"Total AIH's de Média Complexidade - MAC"),
+    alta:c(228,1032954.75, 229,1426994.18,   -1, -394039.43,"Total AIH's de  ALTA COMPLEXIDADE - MAC"),
     uti:{
-      adulto:u(155, 119250.80,330,253888.80,-175, -134638.00,'Diaria UTI ADULTO (UTI II)'),
+      adulto:u(197, 151563.92,330,253888.80,-133, -102324.88,'Diaria UTI ADULTO (UTI II)'),
       ped:   u(161, 133958.44, 30, 24961.20, 131,  108997.24,'Diaria UTI PEDIATRICA (UTI II)'),
       neo:   u(166, 148882.08,210,188344.80, -44,  -39462.72,'Diaria UTI NEONATAL UTIN (TIPO II)'),
       que:   u(  0,      0.00, 30, 21000.00, -30,  -21000.00,'QUEIMADOS'),
-      total: u(482, 402091.32,600,488194.80,-118,  402209.32,'Total Geral de DIARIAS DE UTI'),
+      total: u(524, 434404.44,600,488194.80, -76,  434480.44,'Total Geral de DIARIAS DE UTI'),
     },
-    n_faec:67,   tot_faec_val:630243.43,
-    n_mac:1091,  tot_mac_val:2552306.03,
-    n_media:940, tot_media_val:1543632.83,
-    n_alta:218,  tot_alta_val:1638919.35,
-    tot_val:3182552.48,ticket:2747.45,
+    n_faec:71,   tot_faec_val:641940.23,
+    n_mac:1123,  tot_mac_val:2649407.98,
+    n_media:966, tot_media_val:1616453.23,
+    n_alta:228,  tot_alta_val:1032954.75,
+    tot_val:3291348.21,ticket:2756.57,
   };
 }
 function demoProducao(){
