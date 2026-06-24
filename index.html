@@ -718,6 +718,9 @@ var CFG = {
   // ─── 4. Timeout de rede (ms) ──────────────────────────────────
   TIMEOUT: 14000,
 
+  // ─── 6. Última atualização manual (atualizado automaticamente) ─
+  UPD_MANUAL: '24/06/2026, 09:10',
+
   // ─── 5. Metas mensais Jan–Dez ─────────────────────────────────
   MM: [1668,1804,1414,1562,1498,1427,1635,1494,1493,1726,1103,2059],
   MS: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
@@ -1051,6 +1054,16 @@ function demoProducao(){
 /* ── Update time (somente 14:00) ── */
 function initTime(){
   try{
+    // Se há atualização manual registrada, usa ela
+    if(CFG.UPD_MANUAL){
+      document.getElementById('upT').textContent=CFG.UPD_MANUAL;
+      // Calcular próxima atualização automática
+      var now2=new Date();
+      var today2=new Date(now2.getFullYear(),now2.getMonth(),now2.getDate(),CFG.UPD_H,0,0);
+      var next2=now2>=today2?new Date(today2.getTime()+86400000):today2;
+      document.getElementById('upN').textContent='Próxima: '+next2.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+      return;
+    }
     var now=new Date();
     var today=new Date(now.getFullYear(),now.getMonth(),now.getDate(),CFG.UPD_H,0,0);
     var last,next;
