@@ -419,11 +419,61 @@ body{background:radial-gradient(ellipse 80% 60% at 20% 10%,#112b57 0%,#071427 50
 }
 .login-err.show{display:block}
 .login-footer{margin-top:22px;font-size:10px;color:var(--txt3)}
+
+/* ═══ MODAL SENHA MÓDULO ══════════════════════════════════ */
+#pwd-modal{
+  position:fixed;inset:0;z-index:99998;
+  background:rgba(2,8,23,.85);backdrop-filter:blur(8px);
+  display:none;align-items:center;justify-content:center;
+}
+#pwd-modal.show{display:flex;}
+.pwd-box{
+  background:rgba(17,24,39,.95);
+  border:1px solid rgba(59,130,246,.3);border-radius:18px;
+  padding:36px 32px 28px;width:320px;text-align:center;
+  box-shadow:0 8px 40px rgba(0,0,0,.7);
+}
+.pwd-ico{font-size:32px;margin-bottom:10px;}
+.pwd-title{font-family:var(--fh);font-size:17px;font-weight:800;color:var(--txt);margin-bottom:4px;}
+.pwd-sub{font-size:11px;color:var(--txt3);margin-bottom:20px;}
+.pwd-input{
+  width:100%;background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.12);border-radius:10px;
+  padding:11px 14px;font-size:18px;color:var(--txt);
+  text-align:center;letter-spacing:6px;outline:none;
+  font-family:var(--fh);font-weight:700;
+  transition:border-color .2s;
+}
+.pwd-input:focus{border-color:rgba(59,130,246,.5);}
+.pwd-err{font-size:11px;color:var(--red);margin-top:8px;min-height:16px;}
+.pwd-btns{display:flex;gap:8px;margin-top:16px;}
+.pwd-ok{flex:1;background:linear-gradient(135deg,#3B82F6,#6366F1);
+  color:#fff;border:none;border-radius:9px;padding:10px;
+  font-family:var(--fh);font-size:13px;font-weight:700;cursor:pointer;}
+.pwd-ok:hover{opacity:.9;}
+.pwd-cancel{flex:1;background:transparent;border:1px solid rgba(255,255,255,.1);
+  color:var(--txt3);border-radius:9px;padding:10px;font-size:12px;cursor:pointer;}
+.pwd-cancel:hover{background:rgba(255,255,255,.05);}
 </style>
 </head>
 <body>
 
 <!-- LOADING -->
+<!-- ═══ MODAL SENHA MÓDULO ═══════════════════════════════════ -->
+<div id="pwd-modal">
+  <div class="pwd-box">
+    <div class="pwd-ico">🔒</div>
+    <div class="pwd-title" id="pwd-modname">Acesso Restrito</div>
+    <div class="pwd-sub">Digite a senha para acessar este módulo</div>
+    <input class="pwd-input" type="password" id="pwd-input" maxlength="10" placeholder="••••">
+    <div class="pwd-err" id="pwd-err"></div>
+    <div class="pwd-btns">
+      <button class="pwd-cancel" onclick="closePwd()">Cancelar</button>
+      <button class="pwd-ok" onclick="confirmPwd()">Confirmar</button>
+    </div>
+  </div>
+</div>
+
 <!-- ═══ LOGIN ═══════════════════════════════════════════════ -->
 <div id="login-screen">
   <div class="login-box">
@@ -466,8 +516,8 @@ body{background:radial-gradient(ellipse 80% 60% at 20% 10%,#112b57 0%,#071427 50
     <div class="si" data-m="1" onclick="goMod(1)"><div class="ic">💰</div><span class="si-lbl">Valores por AIH's</span></div>
     <div class="si" data-m="2" onclick="goMod(2)"><div class="ic">🏥</div><span class="si-lbl">Diárias de UTI</span></div>
     <div class="si" data-m="3" onclick="goMod(3)"><div class="ic">📈</div><span class="si-lbl">Análise Financeira</span></div>
-    <div class="si dim"><div class="ic">📋</div><span class="si-lbl">Contratos</span></div>
-    <div class="si dim"><div class="ic">⚙️</div><span class="si-lbl">Configurações</span></div>
+    <div class="si dim" data-m="4" onclick="goMod(4)" style="pointer-events:auto;opacity:.6"><div class="ic">📋</div><span class="si-lbl">Contratos</span></div>
+    <div class="si dim" data-m="5" onclick="goMod(5)" style="pointer-events:auto;opacity:.6"><div class="ic">⚙️</div><span class="si-lbl">Configurações</span></div>
   </nav>
   <!-- Filtros removidos conforme solicitado -->
 
@@ -1101,12 +1151,59 @@ function toggleSb(){
 
 /* ── Module switch ── */
 var MNAMES=['Metas AIH\'s','Valores por AIH\'s','Diárias de UTI','Análise Financeira'];
+var _PWD='3643';
+var _PWD_MODS={1:true,2:true,3:true,4:true,5:true};
+var _PWD_TARGET=0;
+function _isUnlocked(m){try{return sessionStorage.getItem('sc_unlock_'+m)==='1';}catch(x){return false;}}
+function _unlock(m){try{sessionStorage.setItem('sc_unlock_'+m,'1');}catch(x){}}
+
 function goMod(i){
+  if(_PWD_MODS[i]&&!_isUnlocked(i)){
+    _PWD_TARGET=i;
+    var names=MNAMES&&MNAMES.length>4?MNAMES:['Metas AIH\'s','Valores por AIH\'s','Diárias de UTI','Análise Financeira','Contratos','Configurações'];
+    var el=document.getElementById('pwd-modname');
+    if(el) el.textContent=names[i]||'Módulo Restrito';
+    var inp=document.getElementById('pwd-input');
+    if(inp) inp.value='';
+    var err=document.getElementById('pwd-err');
+    if(err) err.textContent='';
+    var modal=document.getElementById('pwd-modal');
+    if(modal){modal.classList.add('show');setTimeout(function(){if(inp)inp.focus();},80);}
+    return;
+  }
   document.querySelectorAll('.mod').forEach(function(m,j){m.classList.toggle('on',j===i);});
   document.querySelectorAll('.si[data-m]').forEach(function(el,j){el.classList.toggle('on',j===i);});
   try{document.getElementById('hPill').textContent=MNAMES[i]||'';}catch(e){}
   try{document.getElementById('scrl').scrollTop=0;}catch(e){}
 }
+function confirmPwd(){
+  var inp=document.getElementById('pwd-input');
+  var v=inp?inp.value:'';
+  if(v===_PWD){
+    _unlock(_PWD_TARGET);
+    closePwd();
+    goMod(_PWD_TARGET);
+  }else{
+    var err=document.getElementById('pwd-err');
+    if(err) err.textContent='Senha incorreta. Tente novamente.';
+    if(inp){inp.value='';inp.focus();}
+  }
+}
+function closePwd(){
+  var modal=document.getElementById('pwd-modal');
+  if(modal) modal.classList.remove('show');
+  var inp=document.getElementById('pwd-input');
+  if(inp) inp.value='';
+  var err=document.getElementById('pwd-err');
+  if(err) err.textContent='';
+}
+document.addEventListener('keydown',function(e){
+  var modal=document.getElementById('pwd-modal');
+  if(modal&&modal.classList.contains('show')){
+    if(e.key==='Enter') confirmPwd();
+    if(e.key==='Escape') closePwd();
+  }
+});
 
 /* ── Progress bar ── */
 function mkPB(p){
