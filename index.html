@@ -372,130 +372,11 @@ body{background:radial-gradient(ellipse 80% 60% at 20% 10%,#112b57 0%,#071427 50
 .prog-fill{height:100%;border-radius:999px;transition:width 1.2s cubic-bezier(.4,0,.2,1);}
 @media(max-width:1200px){.main-grid{grid-template-columns:1fr;}.kpis{grid-template-columns:repeat(2,1fr);}}
 
-
-/* ═══ LOGIN ════════════════════════════════════════════════ */
-#login-screen{
-  position:fixed;inset:0;z-index:99999;
-  background:radial-gradient(ellipse 80% 60% at 20% 10%,#112b57 0%,#071427 50%,#020a18 100%);
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--fb);
-}
-.login-box{
-  background:rgba(17,24,39,.85);
-  border:1px solid rgba(59,130,246,.25);
-  border-radius:20px;padding:44px 40px 36px;width:360px;
-  box-shadow:0 8px 40px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.04);
-  backdrop-filter:blur(16px);text-align:center;
-}
-.login-logo{width:52px;height:52px;border-radius:14px;
-  background:linear-gradient(135deg,#3B82F6,#8B5CF6);
-  display:grid;place-items:center;margin:0 auto 16px;
-  font-family:var(--fh);font-size:20px;font-weight:800;color:#fff;
-  box-shadow:0 0 24px rgba(59,130,246,.4);}
-.login-title{font-family:var(--fh);font-size:20px;font-weight:800;color:var(--txt);margin-bottom:4px}
-.login-sub{font-size:11px;color:var(--txt3);margin-bottom:30px;letter-spacing:.3px}
-.login-field{margin-bottom:14px;text-align:left}
-.login-field label{display:block;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.7px;color:var(--txt3);margin-bottom:6px}
-.login-field input{
-  width:100%;background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:10px;padding:10px 14px;
-  font-family:var(--fb);font-size:13px;color:var(--txt);
-  outline:none;transition:border-color .2s,box-shadow .2s;
-}
-.login-field input:focus{border-color:rgba(59,130,246,.5);box-shadow:0 0 0 3px rgba(59,130,246,.12)}
-.login-btn{
-  width:100%;margin-top:10px;
-  background:linear-gradient(135deg,#3B82F6,#6366F1);
-  color:#fff;border:none;border-radius:10px;
-  padding:11px;font-family:var(--fh);font-size:14px;font-weight:700;
-  cursor:pointer;transition:opacity .18s,transform .18s;letter-spacing:.2px;
-}
-.login-btn:hover{opacity:.9;transform:translateY(-1px)}
-.login-err{
-  margin-top:12px;font-size:11.5px;color:var(--red);
-  background:var(--red-d);border:1px solid rgba(239,68,68,.25);
-  border-radius:8px;padding:8px 12px;display:none;
-}
-.login-err.show{display:block}
-.login-footer{margin-top:22px;font-size:10px;color:var(--txt3)}
-
-/* ═══ MODAL SENHA MÓDULO ══════════════════════════════════ */
-#pwd-modal{
-  position:fixed;inset:0;z-index:99998;
-  background:rgba(2,8,23,.85);backdrop-filter:blur(8px);
-  display:none;align-items:center;justify-content:center;
-}
-#pwd-modal.show{display:flex;}
-.pwd-box{
-  background:rgba(17,24,39,.95);
-  border:1px solid rgba(59,130,246,.3);border-radius:18px;
-  padding:36px 32px 28px;width:320px;text-align:center;
-  box-shadow:0 8px 40px rgba(0,0,0,.7);
-}
-.pwd-ico{font-size:32px;margin-bottom:10px;}
-.pwd-title{font-family:var(--fh);font-size:17px;font-weight:800;color:var(--txt);margin-bottom:4px;}
-.pwd-sub{font-size:11px;color:var(--txt3);margin-bottom:20px;}
-.pwd-input{
-  width:100%;background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.12);border-radius:10px;
-  padding:11px 14px;font-size:18px;color:var(--txt);
-  text-align:center;letter-spacing:6px;outline:none;
-  font-family:var(--fh);font-weight:700;
-  transition:border-color .2s;
-}
-.pwd-input:focus{border-color:rgba(59,130,246,.5);}
-.pwd-err{font-size:11px;color:var(--red);margin-top:8px;min-height:16px;}
-.pwd-btns{display:flex;gap:8px;margin-top:16px;}
-.pwd-ok{flex:1;background:linear-gradient(135deg,#3B82F6,#6366F1);
-  color:#fff;border:none;border-radius:9px;padding:10px;
-  font-family:var(--fh);font-size:13px;font-weight:700;cursor:pointer;}
-.pwd-ok:hover{opacity:.9;}
-.pwd-cancel{flex:1;background:transparent;border:1px solid rgba(255,255,255,.1);
-  color:var(--txt3);border-radius:9px;padding:10px;font-size:12px;cursor:pointer;}
-.pwd-cancel:hover{background:rgba(255,255,255,.05);}
 </style>
 </head>
 <body>
 
 <!-- LOADING -->
-<!-- ═══ MODAL SENHA MÓDULO ═══════════════════════════════════ -->
-<div id="pwd-modal">
-  <div class="pwd-box">
-    <div class="pwd-ico">🔒</div>
-    <div class="pwd-title" id="pwd-modname">Acesso Restrito</div>
-    <div class="pwd-sub">Digite a senha para acessar este módulo</div>
-    <input class="pwd-input" type="password" id="pwd-input" maxlength="10" placeholder="••••">
-    <div class="pwd-err" id="pwd-err"></div>
-    <div class="pwd-btns">
-      <button class="pwd-cancel" onclick="closePwd()">Cancelar</button>
-      <button class="pwd-ok" onclick="confirmPwd()">Confirmar</button>
-    </div>
-  </div>
-</div>
-
-<!-- ═══ LOGIN ═══════════════════════════════════════════════ -->
-<div id="login-screen">
-  <div class="login-box">
-    <div class="login-logo" style="background:none;box-shadow:none;overflow:hidden">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfAAAAHfCAYAAACvVooFAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH6AYCCCsxDHaRYgAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAABcElEQVR42u3BMQEAAADCoPVP7WsIoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeAMBuAABIwAAAABJRU5ErkJggg==" style="width:52px;height:52px;border-radius:14px;object-fit:cover;">
-    </div>
-    <div class="login-title">Painel SUS</div>
-    <div class="login-sub">Santa Casa · Montes Claros · Controladoria</div>
-    <div class="login-field">
-      <label>Login</label>
-      <input type="text" id="lg-user" placeholder="Digite seu login" autocomplete="username">
-    </div>
-    <div class="login-field">
-      <label>Senha</label>
-      <input type="password" id="lg-pass" placeholder="Digite sua senha" autocomplete="current-password">
-    </div>
-    <button class="login-btn" onclick="doLogin()">Entrar</button>
-    <div class="login-err" id="lg-err">Login ou senha incorretos.</div>
-    <div class="login-footer">Acesso restrito · Faturamento / Controladoria</div>
-  </div>
-</div>
-
 <div id="ld">
   <div class="ld-logo" style="background:none;padding:0;overflow:hidden"><img src="data:image/jpeg;base64,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" style="width:56px;height:56px;object-fit:cover;border-radius:16px"></div>
   <div class="ld-bar"><div class="ld-bar-fill" id="ldbar"></div></div>
@@ -515,9 +396,9 @@ body{background:radial-gradient(ellipse 80% 60% at 20% 10%,#112b57 0%,#071427 50
     <div class="si on" data-m="0" onclick="goMod(0)"><div class="ic">📊</div><span class="si-lbl">Metas AIH's</span></div>
     <div class="si" data-m="1" onclick="goMod(1)"><div class="ic">💰</div><span class="si-lbl">Valores por AIH's</span></div>
     <div class="si" data-m="2" onclick="goMod(2)"><div class="ic">🏥</div><span class="si-lbl">Diárias de UTI</span></div>
-    <div class="si" data-m="3" onclick="goMod(3)"><div class="ic">📈</div><span class="si-lbl">Análise Financeira</span></div>
-    <div class="si dim" data-m="4" onclick="goMod(4)" style="pointer-events:auto;opacity:.6"><div class="ic">📋</div><span class="si-lbl">Contratos</span></div>
-    <div class="si dim" data-m="5" onclick="goMod(5)" style="pointer-events:auto;opacity:.6"><div class="ic">⚙️</div><span class="si-lbl">Configurações</span></div>
+    <div class="si dim"><div class="ic">📋</div><span class="si-lbl">Contratos</span></div>
+    <div class="si dim"><div class="ic">📈</div><span class="si-lbl">Relatórios</span></div>
+    <div class="si dim"><div class="ic">⚙️</div><span class="si-lbl">Configurações</span></div>
   </nav>
   <!-- Filtros removidos conforme solicitado -->
 
@@ -533,9 +414,9 @@ body{background:radial-gradient(ellipse 80% 60% at 20% 10%,#112b57 0%,#071427 50
     </div>
     <div class="h-right">
       <div class="h-upd">
-        <div class="h-upd-lbl">Próxima Atualização</div>
-        <div class="h-upd-val" id="upN" style="font-size:13px;font-weight:600;color:var(--cyn)">—</div>
-        <div id="upT" style="display:none"></div>
+        <div class="h-upd-lbl">Última atualização</div>
+        <div class="h-upd-val" id="upT">—</div>
+        <div class="h-upd-nxt" id="upN"></div>
       </div>
       <span class="rcnt" id="rcnt" style="display:none"></span>
       <button class="btn-exp" onclick="doExport()">↓ Exportar CSV</button>
@@ -631,50 +512,41 @@ body{background:radial-gradient(ellipse 80% 60% at 20% 10%,#112b57 0%,#071427 50
 
   <!-- ════ MÓDULO 1 — VALORES POR AIH's ══════════════════════ -->
   <div class="mod" id="mod1">
-    <div id="kpi1" style="display:none"></div>
-    <div style="background:linear-gradient(135deg,rgba(245,158,11,.15),rgba(245,158,11,.05));border:1px solid rgba(245,158,11,.4);border-radius:16px;padding:18px 24px;margin-bottom:20px;display:flex;align-items:center;gap:14px">
-      <span style="font-size:28px">🚧</span>
-      <div>
-        <div style="font-family:var(--fh);font-size:16px;font-weight:800;color:#F59E0B;margin-bottom:3px">Módulo em Desenvolvimento</div>
-        <div style="font-size:12px;color:rgba(148,163,184,.8)">Em breve integração completa com MV2000.</div>
-      </div>
-    </div>
-    <div class="cg c2" style="margin-top:6px">
+    <div class="krow krow-sm" id="kpi1"></div>
+    <div class="cg c12">
       <div class="cc fade-in">
-        <div class="ct">Valor por Clínica — Total da Conta R$</div>
-        <div class="cs">Composição do faturamento bruto por especialidade clínica</div>
-        <div id="ch4" style="height:260px"></div>
+        <div class="ct">Faturamento por Especialidade</div>
+        <div class="cs">Total Conta R$ — composição por grupo clínico</div>
+        <div id="ch4" style="height:240px"></div>
       </div>
       <div class="cc fade-in">
-        <div class="ct">Ticket Médio por Especialidade</div>
+        <div class="ct">Custo Médio de Faturamento por Especialidade</div>
         <div class="cs">Valor R$ médio por AIH — comparativo entre especialidades</div>
-        <div id="ch5" style="height:260px"></div>
+        <div id="ch5" style="height:240px"></div>
       </div>
     </div>
-    <div class="sh" style="margin-top:18px">Ranking de Procedimentos <span class="tag tag-b">Top 15</span></div>
+    <div class="sh">Ranking de Procedimentos <span class="tag tag-b">R_PROD_FINANCIAMENTO · Top 15</span></div>
     <div class="cg c2">
       <div class="cc fade-in">
         <div class="ct">Mais Realizados — Quantidade</div>
-        <div class="cs">Procedimentos por nº de AIH's</div>
+        <div class="cs">Procedimentos por nº de AIH's — col. E da planilha R_PROD_FINANCIAMENTO</div>
         <div id="rkQ" style="max-height:310px;overflow-y:auto;padding-right:2px"></div>
       </div>
       <div class="cc fade-in">
         <div class="ct">Mais Rentáveis — Faturamento R$</div>
-        <div class="cs">Procedimentos por Total Conta</div>
+        <div class="cs">Procedimentos por Total Conta — col. H da planilha R_PROD_FINANCIAMENTO</div>
         <div id="rkV" style="max-height:310px;overflow-y:auto;padding-right:2px"></div>
       </div>
+    </div>
+    <div class="cc fade-in" style="margin-top:14px">
+      <div class="ct">Caráter de Atendimento — Eletivo × Urgência (Colunas Agrupadas)</div>
+      <div class="cs">Realizado vs. Contratado — Eletivo (04/2026) e Urgência (05/2026)</div>
+      <div id="ch6" style="height:190px"></div>
     </div>
   </div>
 
   <!-- ════ MÓDULO 2 — DIÁRIAS DE UTI ══════════════════════════ -->
   <div class="mod" id="mod2">
-    <div style="background:linear-gradient(135deg,rgba(245,158,11,.15),rgba(245,158,11,.05));border:1px solid rgba(245,158,11,.4);border-radius:16px;padding:18px 24px;margin-bottom:20px;display:flex;align-items:center;gap:14px">
-      <span style="font-size:28px">🚧</span>
-      <div>
-        <div style="font-family:var(--fh);font-size:16px;font-weight:800;color:#F59E0B;margin-bottom:3px">Módulo em Desenvolvimento</div>
-        <div style="font-size:12px;color:rgba(148,163,184,.8)">Em breve integração completa com MV2000.</div>
-      </div>
-    </div>
     <div class="sh">Indicadores de UTI <span class="tag tag-g">Período Atual</span></div>
     <div class="ubg" id="ubg"></div>
     <div class="sh">Desempenho Detalhado por Tipo de UTI <span class="tag tag-a">Diárias vs. Contrato</span></div>
@@ -693,49 +565,6 @@ body{background:radial-gradient(ellipse 80% 60% at 20% 10%,#112b57 0%,#071427 50
     </div>
   </div>
 
-
-  <!-- ════ MÓDULO 3 — ANÁLISE FINANCEIRA ════════════════════ -->
-  <div class="mod" id="mod3">
-    <div style="background:linear-gradient(135deg,rgba(245,158,11,.15),rgba(245,158,11,.05));border:1px solid rgba(245,158,11,.4);border-radius:16px;padding:18px 24px;margin-bottom:20px;display:flex;align-items:center;gap:14px">
-      <span style="font-size:28px">🚧</span>
-      <div>
-        <div style="font-family:var(--fh);font-size:16px;font-weight:800;color:#F59E0B;margin-bottom:3px">Módulo em Desenvolvimento</div>
-        <div style="font-size:12px;color:rgba(148,163,184,.8)">Os dados operacionais abaixo são estimativas. Em breve integração completa com MV2000.</div>
-      </div>
-    </div>
-    <div class="sh">Meta × Realizado <span class="tag tag-g">Competência Atual</span></div>
-    <div class="kpis" id="kpi3"></div>
-
-    <div class="cg c2" style="margin-top:6px">
-      <div class="cc fade-in">
-        <div class="ct">Evolução do Atingimento da Meta</div>
-        <div class="cs">Produção realizada vs. meta mensal — progresso do mês</div>
-        <div id="ch_meta" style="height:220px"></div>
-      </div>
-      <div class="cc fade-in">
-        <div class="ct">Projeção Final do Mês</div>
-        <div class="cs">Tendência de fechamento vs. meta pactuada</div>
-        <div id="ch_proj" style="height:220px"></div>
-      </div>
-    </div>
-
-    <div class="sh" style="margin-top:18px">Situação Operacional das AIH's <span class="tag tag-a">Gestão de Pendências</span></div>
-    <div id="aih_status_grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px"></div>
-
-    <div class="cg c2">
-      <div class="cc fade-in">
-        <div class="ct">Distribuição por Status de AIH</div>
-        <div class="cs">Panorama operacional — pendências × prontas</div>
-        <div id="ch_aih_status" style="height:240px"></div>
-      </div>
-      <div class="cc fade-in">
-        <div class="ct">Necessidade Diária para Bater a Meta</div>
-        <div class="cs">AIH's/dia necessárias × ritmo atual</div>
-        <div id="ch_ritmo" style="height:240px"></div>
-      </div>
-    </div>
-  </div>
-
   <div class="foot">Fonte: Sistema MV2000 / DATASUS · Santa Casa de Montes Claros · Controladoria · v5.0</div>
   </div><!-- /scrl -->
 </div><!-- /main -->
@@ -749,13 +578,13 @@ var CFG = {
 
   // ─── 1. CSV DA ABA RESUMO (publicado no Google Sheets) ────────
   //   Arquivo → Publicar na Web → selecione a aba RESUMO → CSV → Copiar
-  URL_RESUMO: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTffnGoZcN4fIqBfwTDXYZncodbmf70IqFS6lt1VCW3raXp6H69DxFp21cK-J_PHOOZA5958_I3T-D8/pub?gid=1163116119&single=true&output=csv',
+  URL_RESUMO: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQzrx-9uCAD-Vih8xXxxoY1QPTLbjpFmpHuW6Pl9wn0IK_OwLbn0LWh7MebaoMbpGv0jSFqKldM-uef/pub?gid=865789917&single=true&output=csv',
 
   // ─── 1b. SE O FETCH FALHAR NO GOOGLE SITES CORPORATIVO: ─────
   //   1) Crie um Apps Script proxy (arquivo proxy_csv.gs fornecido)
   //   2) Implante como App da Web (qualquer pessoa pode acessar)
   //   3) Substitua URL_RESUMO pela URL do Apps Script gerada
-  //   Exemplo: URL_RESUMO: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTffnGoZcN4fIqBfwTDXYZncodbmf70IqFS6lt1VCW3raXp6H69DxFp21cK-J_PHOOZA5958_I3T-D8/pub?gid=1163116119&single=true&output=csv',
+  //   Exemplo: URL_RESUMO: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQzrx-9uCAD-Vih8xXxxoY1QPTLbjpFmpHuW6Pl9wn0IK_OwLbn0LWh7MebaoMbpGv0jSFqKldM-uef/pub?gid=865789917&single=true&output=csv',
 
   // ─── 2. CSV DA ABA R_PROD_FINANCIAMENTO (para ranking) ────────
   //   No Google Sheets, selecione a aba R_PROD_FINANCIAMENTO e publique como CSV.
@@ -767,9 +596,6 @@ var CFG = {
 
   // ─── 4. Timeout de rede (ms) ──────────────────────────────────
   TIMEOUT: 14000,
-
-  // ─── 6. Última atualização manual (atualizado automaticamente) ─
-  UPD_MANUAL: '24/06/2026, 14:00',
 
   // ─── 5. Metas mensais Jan–Dez ─────────────────────────────────
   MM: [1668,1804,1414,1562,1498,1427,1635,1494,1493,1726,1103,2059],
@@ -1054,26 +880,26 @@ function demoResumo(){
   var c=function(r,v,co,m,d,g,l){return{real:r,val:v,contr:co,meta:m,dif:d,gval:g,lbl:l};};
   var u=function(r,v,co,m,d,g,l){return{dias:r,val:v,contr:co,meta:m,dif:d,gval:g,lbl:l};};
   return{
-    competencia:'09/2028',meta_aih:1427,prod_geral:1630,ating_pct:1.1422,diferenca:203,
+    competencia:'08/2028',meta_aih:1427,prod_geral:1622,ating_pct:1.1367,diferenca:195,
     cir: {lbl:'CIRURGICA',labelOnly:true,real:0,val:0,contr:0,meta:0,dif:0,gval:0},
     elet:c(120,  231300.66,  82,  61471.63,   38,  169829.03,'Eletivo'),
-    urg: c(394,  849205.66, 344, 554200.76,   50,  295004.90,'Urgencia'),
-    cli: c(544,  994713.47, 360, 472909.04,  184,  521804.43,'CLÍNICO/PEDIATRIA'),
-    obs: c(226,  202678.09, 303, 247857.03,  -77,  -45178.94,'OBSTETRÍCIA'),
-    mTot:c(1289,2282345.71,1089,1336438.46,  200, 2282145.71,"Total AIH's de Média Complexidade - MAC"),
-    alta:c( 341,2646896.06, 229,1426994.18,  112, 1219901.88,"Total AIH's de  ALTA COMPLEXIDADE - MAC"),
+    urg: c(394,  849209.08, 344, 554200.76,   50,  295008.32,'Urgencia'),
+    cli: c(545,  963130.32, 360, 472909.04,  185,  490221.28,'CLÍNICO/PEDIATRIA'),
+    obs: c(219,  195447.92, 303, 247857.03,  -84,  -52409.11,'OBSTETRÍCIA'),
+    mTot:c(1281,2267718.30,1089,1336438.46,  192,  931279.84,"Total AIH's de Média Complexidade - MAC"),
+    alta:c( 252,1605252.93, 229,1426994.18,   23,  178258.75,"Total AIH's de  ALTA COMPLEXIDADE - MAC"),
     uti:{
       adulto:u(363, 279277.68,330,253888.80,  33,   25388.88,'Diaria UTI ADULTO (UTI II)'),
-      ped:   u(464, 386066.56, 30, 24961.20, 434,  361105.36,'Diaria UTI PEDIATRICA (UTI II)'),
+      ped:   u(457, 380242.28, 30, 24961.20, 427,  355281.08,'Diaria UTI PEDIATRICA (UTI II)'),
       neo:   u(299, 268167.12,210,188344.80,  89,   79822.32,'Diaria UTI NEONATAL UTIN (TIPO II)'),
       que:   u(  0,      0.00, 30, 21000.00, -30,  -21000.00,'QUEIMADOS'),
-      total: u(1126,933511.36,600,488194.80, 526,  932985.36,'Total Geral de DIARIAS DE UTI'),
+      total: u(1119,927687.08,600,488194.80, 519,  927168.08,'Total Geral de DIARIAS DE UTI'),
     },
-    n_faec:89,   tot_faec_val:141643.13,
-    n_mac:1541,  tot_mac_val:3887598.04,
-    n_media:1289,tot_media_val:2282345.71,
+    n_faec:89,   tot_faec_val:1041643.12,
+    n_mac:1533,  tot_mac_val:3872971.23,
+    n_media:1281,tot_media_val:2267718.30,
     n_alta:341,  tot_alta_val:2646896.06,
-    tot_val:4928638.65,ticket:3023.70,
+    tot_val:4914614.36,ticket:3030.59,
   };
 }
 function demoProducao(){
@@ -1105,26 +931,12 @@ function demoProducao(){
 function initTime(){
   try{
     var now=new Date();
-    var h=now.getHours(), m=now.getMinutes();
-    var totalMin=h*60+m;
-    var t9=9*60, t14=14*60;
-    var nextDate=new Date(now);
-    var nextHour;
-    if(totalMin<t9){          // antes das 9h → próxima hoje 09:00
-      nextHour=9;
-    } else if(totalMin<t14){ // entre 9h e 14h → próxima hoje 14:00
-      nextHour=14;
-    } else {                  // após 14h → próxima amanhã 09:00
-      nextDate.setDate(nextDate.getDate()+1);
-      nextHour=9;
-    }
-    nextDate.setHours(nextHour,0,0,0);
-    var fmt=nextDate.toLocaleString('pt-BR',{
-      day:'2-digit',month:'2-digit',year:'numeric',
-      hour:'2-digit',minute:'2-digit'
-    });
-    var el=document.getElementById('upN');
-    if(el) el.textContent=fmt;
+    var today=new Date(now.getFullYear(),now.getMonth(),now.getDate(),CFG.UPD_H,0,0);
+    var last,next;
+    if(now>=today){last=today;var nx=new Date(today);nx.setDate(nx.getDate()+1);next=nx;}
+    else{var yd=new Date(today);yd.setDate(yd.getDate()-1);last=yd;next=today;}
+    document.getElementById('upT').textContent=last.toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
+    document.getElementById('upN').textContent='Próxima: '+next.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
   }catch(e){}
 }
 
@@ -1150,60 +962,13 @@ function toggleSb(){
 }
 
 /* ── Module switch ── */
-var MNAMES=['Metas AIH\'s','Valores por AIH\'s','Diárias de UTI','Análise Financeira'];
-var _PWD='3643';
-var _PWD_MODS={1:true,2:true,3:true,4:true,5:true};
-var _PWD_TARGET=0;
-function _isUnlocked(m){try{return sessionStorage.getItem('sc_unlock_'+m)==='1';}catch(x){return false;}}
-function _unlock(m){try{sessionStorage.setItem('sc_unlock_'+m,'1');}catch(x){}}
-
+var MNAMES=['Metas AIH\'s','Valores por AIH\'s','Diárias de UTI'];
 function goMod(i){
-  if(_PWD_MODS[i]&&!_isUnlocked(i)){
-    _PWD_TARGET=i;
-    var names=MNAMES&&MNAMES.length>4?MNAMES:['Metas AIH\'s','Valores por AIH\'s','Diárias de UTI','Análise Financeira','Contratos','Configurações'];
-    var el=document.getElementById('pwd-modname');
-    if(el) el.textContent=names[i]||'Módulo Restrito';
-    var inp=document.getElementById('pwd-input');
-    if(inp) inp.value='';
-    var err=document.getElementById('pwd-err');
-    if(err) err.textContent='';
-    var modal=document.getElementById('pwd-modal');
-    if(modal){modal.classList.add('show');setTimeout(function(){if(inp)inp.focus();},80);}
-    return;
-  }
   document.querySelectorAll('.mod').forEach(function(m,j){m.classList.toggle('on',j===i);});
   document.querySelectorAll('.si[data-m]').forEach(function(el,j){el.classList.toggle('on',j===i);});
   try{document.getElementById('hPill').textContent=MNAMES[i]||'';}catch(e){}
   try{document.getElementById('scrl').scrollTop=0;}catch(e){}
 }
-function confirmPwd(){
-  var inp=document.getElementById('pwd-input');
-  var v=inp?inp.value:'';
-  if(v===_PWD){
-    _unlock(_PWD_TARGET);
-    closePwd();
-    goMod(_PWD_TARGET);
-  }else{
-    var err=document.getElementById('pwd-err');
-    if(err) err.textContent='Senha incorreta. Tente novamente.';
-    if(inp){inp.value='';inp.focus();}
-  }
-}
-function closePwd(){
-  var modal=document.getElementById('pwd-modal');
-  if(modal) modal.classList.remove('show');
-  var inp=document.getElementById('pwd-input');
-  if(inp) inp.value='';
-  var err=document.getElementById('pwd-err');
-  if(err) err.textContent='';
-}
-document.addEventListener('keydown',function(e){
-  var modal=document.getElementById('pwd-modal');
-  if(modal&&modal.classList.contains('show')){
-    if(e.key==='Enter') confirmPwd();
-    if(e.key==='Escape') closePwd();
-  }
-});
 
 /* ── Progress bar ── */
 function mkPB(p){
@@ -1357,8 +1122,11 @@ function renderAll(){
   // Filtros afetam os rankings (R_PROD tem col. complexidade/financiamento)
   var tQ=rk.tQ, tV=rk.tV;
 
-  // ─ Competência pill — oculto ────────────────────────────────
-  try{document.getElementById('hComp').style.display='none';}catch(x){}
+  // ─ Competência pill ──────────────────────────────────────────
+  if(d.competencia){
+    var hp=document.getElementById('hComp');
+    hp.textContent='Competência: '+d.competencia;hp.style.display='';
+  }
 
   // ─ KPIs Módulo 0 — COD.HTML design ────────────────────────
   var metaMS=CFG.MS[nowM];
@@ -1468,12 +1236,14 @@ function renderAll(){
       +'</div>';
   }).join('');
 
-  // ─ kpi1 vazio ───────────────────────────────────────────────
-  var _k1=document.getElementById('kpi1'); if(_k1) _k1.innerHTML='';
+  // ─ KPIs Módulo 1 ─────────────────────────────────────────────
+  // ─ KPIs Módulo 1 ─────────────────────────────────────────────
+  document.getElementById('kpi1').innerHTML=
+    mkK('Total AIHs',Ni(totalCalc),'','neu','📋','#3B82F6')+
+    mkK('Ticket Médio / AIH',BRL(d.ticket),'Valor médio por internação — '+BRLk(d.tot_val)+' total','neu','🏷','#06B6D4');
 
   // ─ Rankings ───────────────────────────────────────────────────
   mkRk('rkQ',tQ,false); mkRk('rkV',tV,true);
-  renderMod3(d);
 
   /* ════ GRÁFICOS ApexCharts ═════════════════════════════════ */
 
@@ -1506,23 +1276,28 @@ function renderAll(){
     labels:['Média Complexidade','Alta Complexidade'],
     plotOptions:{pie:{donut:{size:'65%',labels:{show:true,total:{show:true,label:'AIH\'s',color:'#94A3B8',fontSize:'11px'}}}}}});
 
-  // ch4: Valor por Clínica — donut
-  mkC('ch4',{chart:{type:'donut',height:260},
-    series:[d.elet.val,d.urg.val,d.cli.val,d.obs.val,d.alta?d.alta.val:0],
-    labels:['Eletivo','Urgência','Clínico/Ped.','Obstetrícia','Alta Complexidade'],
-    plotOptions:{pie:{donut:{size:'65%',labels:{show:true,total:{show:true,label:'Total',color:'#94A3B8',fontSize:'11px',formatter:function(w){return BRLk(w.globals.seriesTotals.reduce(function(a,b){return a+b;},0));}}}}}}});
+  // ch4: Faturamento por especialidade donut
+  mkC('ch4',{chart:{type:'donut',height:240},
+    series:[d.cir.val,d.cli.val,d.obs.val],
+    labels:['Cirúrgica','Clínico/Ped.','Obstetrícia'],
+    plotOptions:{pie:{donut:{size:'68%',labels:{show:true,total:{show:true,label:'Faturamento',color:'#94A3B8',fontSize:'10px',formatter:function(w){return BRLk(w.globals.seriesTotals.reduce(function(a,b){return a+b;},0));}}}}}}});
 
-  // ch5: Ticket Médio por Especialidade (horizontal bar)
-  mkC('ch5',{chart:{type:'bar',height:260},
-    series:[{name:'Ticket Médio R$',data:[
-      d.elet.real?+(d.elet.val/d.elet.real).toFixed(2):0,
-      d.urg.real?+(d.urg.val/d.urg.real).toFixed(2):0,
+  // ch5: Custo médio por especialidade (horizontal bar)
+  mkC('ch5',{chart:{type:'bar',height:240},
+    series:[{name:'Custo Médio / AIH (R$)',data:[
+      d.cir.real?+(d.cir.val/d.cir.real).toFixed(2):0,
       d.cli.real?+(d.cli.val/d.cli.real).toFixed(2):0,
-      d.obs.real?+(d.obs.val/d.obs.real).toFixed(2):0,
-      (d.alta&&d.alta.real)?+(d.alta.val/d.alta.real).toFixed(2):0]}],
-    xaxis:{categories:['Eletivo','Urgência','Clínico/Ped.','Obstetrícia','Alta Compl.']},
-    plotOptions:{bar:{horizontal:true,borderRadius:5,barHeight:'45%'}},
-    colors:['#F59E0B'],yaxis:{labels:{style:{colors:'#64748B',fontSize:'11px'}}}});
+      d.obs.real?+(d.obs.val/d.obs.real).toFixed(2):0]}],
+    xaxis:{categories:['Cirúrgica','Clínico/Ped.','Obstetrícia']},
+    plotOptions:{bar:{horizontal:true,borderRadius:5,barHeight:'50%'}},
+    colors:['#8B5CF6'],yaxis:{labels:{style:{colors:'#64748B',fontSize:'11px'}}}});
+
+  // ch6: Eletivo × Urgência — realizado vs contratado (grouped columns)
+  mkC('ch6',{chart:{type:'bar',height:190},
+    series:[{name:'Eletivo',data:[d.elet.real,d.elet.contr]},{name:'Urgência',data:[d.urg.real,d.urg.contr]}],
+    xaxis:{categories:['Realizado','Contratado']},
+    plotOptions:{bar:{borderRadius:5,columnWidth:'55%'}},
+    colors:['#06B6D4','#EF4444']});
 
   // ch7: UTI pie
   mkC('ch7',{chart:{type:'pie',height:240},
@@ -1559,111 +1334,6 @@ function renderAll(){
     xaxis:{categories:['UTI Adulto','UTI Pediátrica','UTIN Neonatal','UTI Queimados']},
     plotOptions:{bar:{horizontal:true,borderRadius:5,barHeight:'45%'}},
     colors:['#8B5CF6'],yaxis:{labels:{style:{colors:'#64748B',fontSize:'10px'}}}});
-}
-
-/* ── Módulo 3 — Análise Financeira ── */
-function renderMod3(d){
-  var now=new Date();
-  var diasNoMes=new Date(now.getFullYear(),now.getMonth()+1,0).getDate();
-  var diaAtual=now.getDate();
-  var diasRestantes=diasNoMes-diaAtual;
-
-  var metaMes=d.meta_aih||0;
-  var faturadas=d.prod_geral||0;
-  var pctAting=metaMes?(faturadas/metaMes*100):0;
-  var difMeta=faturadas-metaMes;
-  var ritmoAtual=diaAtual>0?faturadas/diaAtual:0;
-  var projecao=Math.round(ritmoAtual*diasNoMes);
-  var metaAtingida=projecao>=metaMes;
-  var necessariaDia=diasRestantes>0?Math.ceil(Math.max(0,metaMes-faturadas)/diasRestantes):0;
-
-  // Dados demo para situação operacional (em produção viriam do sistema)
-  var aihStatus={
-    abertas:Math.round(faturadas*0.12),
-    semAlta:Math.round(faturadas*0.08),
-    inconsistencia:Math.round(faturadas*0.05),
-    prontas:Math.round(faturadas*0.75),
-    semAIH:Math.round(faturadas*0.04),
-    rejeitadas:Math.round(faturadas*0.03),
-    vencidas:Math.round(faturadas*0.02),
-    canceladas:Math.round(faturadas*0.01),
-  };
-
-  // KPIs
-  document.getElementById('kpi3').innerHTML=[
-    {t:'AIHs Meta do Mês',              v:Ni(metaMes),                          ico:'🎯',ac:'#3B82F6'},
-    {t:'AIHs Faturadas',                v:Ni(faturadas),                        ico:'✅',ac:'#22C55E'},
-    {t:'Total Geral AIH Realizadas',    v:BRL(d.tot_val||0),                    ico:'💰',ac:'#22C55E',inline:true},
-    {t:'% Atingimento da Meta',         v:pctAting.toFixed(1)+'%',             ico:'📊',ac:pctAting>=100?'#22C55E':'#F59E0B'},
-    {t:'Diferença para Meta',           v:(difMeta>=0?'+':'')+Ni(difMeta),     ico:difMeta>=0?'📈':'📉',ac:difMeta>=0?'#22C55E':'#EF4444'},
-    {t:'Projeção Final do Mês',         v:Ni(projecao),                        ico:'🔮',ac:'#8B5CF6'},
-    {t:'Dias Restantes',                v:Ni(diasRestantes)+' dias',           ico:'📅',ac:'#06B6D4'},
-  ].map(function(k){
-    if(k.inline){
-      return '<div class="kpi-card" style="grid-column:span 2">'
-        +'<div class="kpi-top" style="margin-bottom:10px"><div class="kpi-title">'+k.t+'</div><span style="font-size:22px">'+k.ico+'</span></div>'
-        +'<div style="font-family:var(--fh);font-size:32px;font-weight:800;color:'+k.ac+';white-space:nowrap;letter-spacing:-1px">'+k.v+'</div>'
-        +'</div>';
-    }
-    return '<div class="kpi-card">'
-      +'<div class="kpi-top"><div class="kpi-title">'+k.t+'</div><div class="kpi-icon">'+k.ico+'</div></div>'
-      +'<div class="kpi-value" style="font-size:36px;color:'+k.ac+'">'+k.v+'</div>'
-      +'</div>';
-  }).join('');
-
-  // Grid de situação operacional
-  var statusCards=[
-    {l:'AIHs Abertas',        v:aihStatus.abertas,      ic:'🔓',cor:'#F59E0B'},
-    {l:'AIHs sem Alta',       v:aihStatus.semAlta,      ic:'🛏',cor:'#EF4444'},
-    {l:'Com Inconsistência',  v:aihStatus.inconsistencia,ic:'⚠️',cor:'#F59E0B'},
-    {l:'Prontas p/ Envio',    v:aihStatus.prontas,      ic:'📤',cor:'#22C55E'},
-    {l:'Internações sem AIH', v:aihStatus.semAIH,       ic:'🚫',cor:'#EF4444'},
-    {l:'AIHs Rejeitadas',     v:aihStatus.rejeitadas,   ic:'❌',cor:'#EF4444'},
-    {l:'AIHs Vencidas',       v:aihStatus.vencidas,     ic:'⏰',cor:'#8B5CF6'},
-    {l:'AIHs Canceladas',     v:aihStatus.canceladas,   ic:'🗑',cor:'#64748B'},
-  ];
-  document.getElementById('aih_status_grid').innerHTML=statusCards.map(function(s){
-    return '<div class="kpi-card" style="padding:14px 16px">'
-      +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">'
-      +'<span style="font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:var(--txt3)">'+s.l+'</span>'
-      +'<span style="font-size:18px">'+s.ic+'</span></div>'
-      +'<div style="font-family:var(--fh);font-size:32px;font-weight:800;color:'+s.cor+'">'+Ni(s.v)+'</div>'
-      +'</div>';
-  }).join('');
-
-  // ch_meta: progresso do mês (gauge via radialBar)
-  mkC('ch_meta',{chart:{type:'radialBar',height:220},
-    series:[Math.min(100,pctAting).toFixed(1)],
-    plotOptions:{radialBar:{hollow:{size:'55%'},dataLabels:{name:{show:true,label:'Atingimento'},
-      value:{fontSize:'28px',fontWeight:800,formatter:function(v){return v+'%';}}}}},
-    labels:['Atingimento'],
-    colors:[pctAting>=100?'#22C55E':pctAting>=70?'#F59E0B':'#EF4444']});
-
-  // ch_proj: projeção vs meta (bar)
-  mkC('ch_proj',{chart:{type:'bar',height:220},
-    series:[{name:'Realizado',data:[faturadas]},{name:'Projeção',data:[projecao]},{name:'Meta',data:[metaMes]}],
-    xaxis:{categories:['AIH\'s']},
-    plotOptions:{bar:{columnWidth:'45%',borderRadius:5}},
-    colors:['#3B82F6','#8B5CF6','#F59E0B'],
-    annotations:{yaxis:[{y:metaMes,borderColor:'#F59E0B',borderWidth:2,label:{text:'Meta',style:{color:'#fff',background:'#F59E0B'}}}]}});
-
-  // ch_aih_status: donut pendências
-  mkC('ch_aih_status',{chart:{type:'donut',height:240},
-    series:[aihStatus.prontas,aihStatus.abertas,aihStatus.semAlta,aihStatus.inconsistencia,aihStatus.rejeitadas],
-    labels:['Prontas','Abertas','Sem Alta','Inconsistência','Rejeitadas'],
-    colors:['#22C55E','#F59E0B','#EF4444','#F59E0B','#8B5CF6'],
-    plotOptions:{pie:{donut:{size:'62%'}}}});
-
-  // ch_ritmo: necessidade diária vs ritmo atual (linha)
-  mkC('ch_ritmo',{chart:{type:'line',height:240},
-    series:[
-      {name:'Ritmo Atual (AIH/dia)',data:Array.from({length:diaAtual},function(_,i){return +ritmoAtual.toFixed(1);})},
-      {name:'Necessário (AIH/dia)',data:Array.from({length:diasNoMes},function(_,i){return i<diaAtual?null:necessariaDia;})}
-    ],
-    xaxis:{categories:Array.from({length:diasNoMes},function(_,i){return 'Dia '+(i+1);}),
-      labels:{style:{fontSize:'9px'}}},
-    stroke:{curve:'smooth',width:[2,2],dashArray:[0,5]},
-    colors:['#3B82F6','#EF4444'],markers:{size:[4,4]}});
 }
 
 /* ── Export CSV dos dados do dashboard ── */
@@ -1747,55 +1417,7 @@ async function init(){
     },300);
   }
 }
-
-/* ═══ LOGIN ═══════════════════════════════════════════════════ */
-var _LK='sc_painel_auth';
-function doLogin(){
-  var u=document.getElementById('lg-user').value.trim();
-  var p=document.getElementById('lg-pass').value;
-  var err=document.getElementById('lg-err');
-  if(u==='Faturamento'&&p==='Santacasa@3643'){
-    try{sessionStorage.setItem(_LK,'1');}catch(x){}
-    document.getElementById('login-screen').style.display='none';
-    err.classList.remove('show');
-  }else{
-    err.classList.add('show');
-    document.getElementById('lg-pass').value='';
-    document.getElementById('lg-pass').focus();
-  }
-}
-(function(){
-  try{if(sessionStorage.getItem(_LK)==='1'){document.getElementById('login-screen').style.display='none';}}catch(x){}
-  ['lg-user','lg-pass'].forEach(function(id){
-    var el=document.getElementById(id);
-    if(el) el.addEventListener('keydown',function(e){if(e.key==='Enter')doLogin();});
-  });
-})();
-
 init();
-
-/* ═══ AUTO-RELOAD ÀS 09:00 E 14:00 ═══════════════════════════ */
-(function(){
-  function agendarReload(){
-    var agora=new Date();
-    var h=agora.getHours(),m=agora.getMinutes(),s=agora.getSeconds();
-    var totalSegAgora=h*3600+m*60+s;
-    var alvos=[9*3600, 14*3600];
-    var proximoMs=null;
-    for(var i=0;i<alvos.length;i++){
-      var diff=(alvos[i]-totalSegAgora)*1000;
-      if(diff>0&&(proximoMs===null||diff<proximoMs))proximoMs=diff;
-    }
-    if(proximoMs===null){
-      var amanha=new Date(agora);
-      amanha.setDate(amanha.getDate()+1);
-      amanha.setHours(9,0,0,0);
-      proximoMs=amanha-agora;
-    }
-    setTimeout(function(){location.reload();},proximoMs);
-  }
-  agendarReload();
-})();
 </script>
 </body>
 </html>
