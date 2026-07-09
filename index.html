@@ -372,11 +372,74 @@ body{background:radial-gradient(ellipse 80% 60% at 20% 10%,#112b57 0%,#071427 50
 .prog-fill{height:100%;border-radius:999px;transition:width 1.2s cubic-bezier(.4,0,.2,1);}
 @media(max-width:1200px){.main-grid{grid-template-columns:1fr;}.kpis{grid-template-columns:repeat(2,1fr);}}
 
+
+/* ═══ LOGIN ════════════════════════════════════════════════ */
+#login-screen{position:fixed;inset:0;z-index:99999;background:radial-gradient(ellipse 80% 60% at 20% 10%,#112b57 0%,#071427 50%,#020a18 100%);display:flex;align-items:center;justify-content:center;font-family:var(--fb);}
+.login-box{background:rgba(17,24,39,.85);border:1px solid rgba(59,130,246,.25);border-radius:20px;padding:44px 40px 36px;width:360px;box-shadow:0 8px 40px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.04);backdrop-filter:blur(16px);text-align:center;}
+.login-logo{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#3B82F6,#8B5CF6);display:grid;place-items:center;margin:0 auto 16px;font-family:var(--fh);font-size:20px;font-weight:800;color:#fff;box-shadow:0 0 24px rgba(59,130,246,.4);}
+.login-title{font-family:var(--fh);font-size:20px;font-weight:800;color:var(--txt);margin-bottom:4px}
+.login-sub{font-size:11px;color:var(--txt3);margin-bottom:30px;letter-spacing:.3px}
+.login-field{margin-bottom:14px;text-align:left}
+.login-field label{display:block;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.7px;color:var(--txt3);margin-bottom:6px}
+.login-field input{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 14px;font-family:var(--fb);font-size:13px;color:var(--txt);outline:none;transition:border-color .2s,box-shadow .2s;}
+.login-field input:focus{border-color:rgba(59,130,246,.5);box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.login-btn{width:100%;margin-top:10px;background:linear-gradient(135deg,#3B82F6,#6366F1);color:#fff;border:none;border-radius:10px;padding:11px;font-family:var(--fh);font-size:14px;font-weight:700;cursor:pointer;transition:opacity .18s,transform .18s;letter-spacing:.2px;}
+.login-btn:hover{opacity:.9;transform:translateY(-1px)}
+.login-err{margin-top:12px;font-size:11.5px;color:var(--red);background:var(--red-d);border:1px solid rgba(239,68,68,.25);border-radius:8px;padding:8px 12px;display:none;}
+.login-err.show{display:block}
+.login-footer{margin-top:22px;font-size:10px;color:var(--txt3)}
+
+/* ═══ MODAL SENHA ══════════════════════════════════════════ */
+#pwd-modal{position:fixed;inset:0;z-index:99998;background:rgba(2,8,23,.85);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;}
+#pwd-modal.show{display:flex;}
+.pwd-box{background:rgba(17,24,39,.95);border:1px solid rgba(59,130,246,.3);border-radius:18px;padding:36px 32px 28px;width:320px;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,.7);}
+.pwd-ico{font-size:32px;margin-bottom:10px;}
+.pwd-title{font-family:var(--fh);font-size:17px;font-weight:800;color:var(--txt);margin-bottom:4px;}
+.pwd-sub{font-size:11px;color:var(--txt3);margin-bottom:20px;}
+.pwd-input{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:11px 14px;font-size:18px;color:var(--txt);text-align:center;letter-spacing:6px;outline:none;font-family:var(--fh);font-weight:700;transition:border-color .2s;}
+.pwd-input:focus{border-color:rgba(59,130,246,.5);}
+.pwd-err{font-size:11px;color:var(--red);margin-top:8px;min-height:16px;}
+.pwd-btns{display:flex;gap:8px;margin-top:16px;}
+.pwd-ok{flex:1;background:linear-gradient(135deg,#3B82F6,#6366F1);color:#fff;border:none;border-radius:9px;padding:10px;font-family:var(--fh);font-size:13px;font-weight:700;cursor:pointer;}
+.pwd-ok:hover{opacity:.9;}
+.pwd-cancel{flex:1;background:transparent;border:1px solid rgba(255,255,255,.1);color:var(--txt3);border-radius:9px;padding:10px;font-size:12px;cursor:pointer;}
+.pwd-cancel:hover{background:rgba(255,255,255,.05);}
 </style>
 </head>
 <body>
 
 <!-- LOADING -->
+<div id="pwd-modal">
+  <div class="pwd-box">
+    <div class="pwd-ico">🔒</div>
+    <div class="pwd-title" id="pwd-modname">Acesso Restrito</div>
+    <div class="pwd-sub">Digite a senha para acessar este módulo</div>
+    <input class="pwd-input" type="password" id="pwd-input" maxlength="10" placeholder="••••">
+    <div class="pwd-err" id="pwd-err"></div>
+    <div class="pwd-btns">
+      <button class="pwd-cancel" onclick="closePwd()">Cancelar</button>
+      <button class="pwd-ok" onclick="confirmPwd()">Confirmar</button>
+    </div>
+  </div>
+</div>
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">SC</div>
+    <div class="login-title">Painel SUS</div>
+    <div class="login-sub">Santa Casa · Montes Claros · Controladoria</div>
+    <div class="login-field">
+      <label>Login</label>
+      <input type="text" id="lg-user" placeholder="Digite seu login" autocomplete="username">
+    </div>
+    <div class="login-field">
+      <label>Senha</label>
+      <input type="password" id="lg-pass" placeholder="Digite sua senha" autocomplete="current-password">
+    </div>
+    <button class="login-btn" onclick="doLogin()">Entrar</button>
+    <div class="login-err" id="lg-err">Login ou senha incorretos.</div>
+    <div class="login-footer">Acesso restrito · Faturamento / Controladoria</div>
+  </div>
+</div>
 <div id="ld">
   <div class="ld-logo" style="background:none;padding:0;overflow:hidden"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEBAPDw8QDw8PEA8PEA8VDxUPDw8QFREWFhUVFRUYHiggGBolHRUVITEhJSkrLi4uFx8zODMsNyguLisBCgoKDg0OFxAPGi0fIB0rLS0vLS0tLS0tLS0tKy0tLS0rLS0tLS0rLS0tLS0tLS0tKy0rKy0rLSstLTctLS0tLf/AABEIAOEA4QMBIgACEQEDEQH/xAAbAAADAQEBAQEAAAAAAAAAAAAAAgMBBwYFBP/EAEQQAAEDAgMDCgMDCQcFAAAAAAEAAgMEEQUSIRMxUQYHFCIyQWFxkbFScoFCksEjVWJzgpOhs9IVJDM1dJTRFiU0orL/xAAaAQADAQEBAQAAAAAAAAAAAAABAgMABAUG/8QAIhEBAQACAgIDAQEBAQAAAAAAAAECERIhAzETQVFhgUIE/9oADAMBAAIRAxEAPwDl9RI7O/rO7bvtHiVPau+J33itqe2/53e5U16SR9q74nfeKNq74nfeKRCwH2jvid6lG1d8TvvFIhFlNq74nepTCV3xO9SpBMFi1QSu+J3qUwld8TvvFSCYIlqold8TvvFOJHfE77xUgmCaJ1YSH4neqdsh+J3qohUamSyXa8/EfVO154n1UWlUaniOS7XnifVUDzxPqoNKq0pojku1x4n1VGuPEqDSqtTxz5LNPiVUO8VBpVWlPEclmOTgqQKZpTxHJYeadqk0qjSmiVOtSgrb6IlfW9ULEJVNOUVPbf8AO73KmqVPbf8AO73KmvKfYhCELAEIQizQmCULQsUwTBIE4RLTBOEgKYJiVQJ2qYKcJkqqCqNUmlUaUyWUVaVRpUmqjSniGUVaqtKiCqNKaVHKLgp2lSBTgp4hlFmlUaVFpTgp4lYqFQKIKcFNtKxUHxWqYK26Oy67fat4lCy54oU9q6cqqe2/53e5U1Sp7b/nd7lTXmvrQhCFgCEIRZoWrFqwGC0LAtCMLTBMEgTIksUCdpUwnCZOqNThTBThNErFmlUBUGlUaU0SyizVRpUQU4KeI5R+gOTtKi0pwU0qGUWa5UBUAU4KeVKxYFOCohya6KdioKa6kCtv4o7Lxeht4/wQkuhLtXi5bU9t/wA7vdTVKjtv+d3uUi899OxCChZghCLLNsBMlWhYDBalTBEpgtCULQiWqApgUgTAoksUBTgqQKcFMnYqCqAqIKcJolYs0qgKgCqAppUsos1yoCoApwU0qVxWDlQFQDk7SmlSuKwcmBUQU2ZNtO4rArcykCjMjsvF6lCRCTanFzCo7b/nd7qapUDrv+d3uUi4n0BUJrLFmZZFlqFhYhahENhasWrA0LbrAun8k+T8FDSxYlXRNnqqgZqSmd2I2WuJHg6XtY+GYDfdC5aLlZJbfTwNNg1VIM0VHVyt+JlLNI0/VrSFccna7831/wDsZ/6F2WnhxiqAkEraaMi7GEiIZfABrjbzVDyYxU769v7+X+lJz17sS52+sLXGBydrvzfX/wCxn/oSz4PVRtzS0dXE0b3PpZY2j6uaAu0jkvio3V4/fS/0pJ6XGaYbTatqWgXcwHa3b4tc0H7uqPyflhblfvCuGtcqAro3KPBIMQppa6jiEFbTNL6mmaOpOzeXtA3O0cfHUG+hXNmlVwz37CyWbizSmBUgUwKptKxdpTNKiCnBTSp3FYFOHKAKYOR2ncVg5MHKIcmzJtkuK2ZF1LMgnRHZeL2OXzQi6xJtTi5nUDrv+Z3uVJWqB13/ADO9yp2XM9fZbIsmWLNstkJrIWHZbIstQszEIQsy1HEHyxRu7L5I2O+VzwD/AAK7xPCJ8bbC4AxUrGBre4hsQeB95w9FwvDP8eD9fD/Mau74P/n1R8r/AP4jSZfd/lR83fGftjoIavHTcrXw4hJS1MbWRXbsni9y1wGVxPfc3Hgbjz9mvFc5uE7Sl6UwflaW7zbe6A6Pb9NHfs+K4/FxuWsvt1eWZcd4+49lFIHAEG4IBBG4gpiF4fm6x7as2D3XLeyeOn4/gV7i6Xy+O4Zca3i8k8mO3OzCKfHAxgtHUtJc3uIka6//ALMuuKYjEGTzxjsxzzRjybI5o9l3DH/88o/1cfvKuI42f71Vf6qp/nPXd473L/HFjNcp/X5wUwKkCnBV5QsVBTByiCnBTQliocmDlG6YFHZLitdaHKQK3MjslxVutLt6kCguW2Xi9uhZfwQlU4uczjrv+Z3up2V5x13/ADO91Oynp27IssqELLLabZLLLJ7LEB2SyE1lllhYssmWLDt+jDB+Xg/Xw/zGrvGENtj1T8rj9CyM/iuCUsoZJHIRcRyMkI7yGuDjb0XdsQrG0+LxVhP5CriY7P3ZXMay9+AysP1U8vdn7Kj5f+cvyve4jXxwRPmmeGRxtLnOPcPcnwC8TVcsHyVFVSupwKQU87hPrYs2Vw6/Zym69jiWHxVMRilaHxu8fDQgjvXn8N5BQx2a+eonha67ad8h2Fu4OYO1Y623eC4/HwkvL27Lu3r05hyLxAxzMsbEEAe7f46fVd4pJg9jXt3OAI+q8RiHNux9RNUxzmHaEujibGMjH5Rv8MwJsLb163CaMwRCN789rm9rAX3geF7+qt/6fLh5JLPaPjwvjzy/K8hj4/77R/q4/eZcOxs/3ur/ANVU/wA5y7VS1TanGHVDSDBSRuvJ9nKxpF7/ADOcfouHV9RtJppRulmllHk95d+KrhNWT8iOHfK/tTBWgpAVt1cbFQVoKndbdGUliuZaCpAproluKoK26ldbmW2XirmWFyTMscdD5I7DT310IuhJtTTwE46zvmd7qdlecdZ3zO91OyOh2nZBCpZZZbQ7TsssqWVqOikmeIoY3yyO3MY0vcfoO5CjK/HZYvuV/JWuhYZJqKeONou55ju1o4ktvYea+fh+HTVD9nTxPmkyl2Rjczsotc24aj1Scpfs/b8SF+rEKCWB5inifDIACWPGVwB3GytW4JUwxsmmp5YoZMuSVzCGOzC7bHxGq24L5y6FyQ5WU8lM3DMUcY44v/ErBvh17En6IubHdbQ2sCvIR8n6t0TahtLMYHZcsoYSx13ZRY+J0X6/+jMR/N9V+6KXK437HW5qzp1ihoMRhaBQ1cVTT6ZC2VjmZe6wdcAeAK/UZsc+GM/uf+Vw/EcIqqXL0iCam2mYszAx58ts1uNrt9VU4NW7DpWwqejZNpt7O2eT4r8PFJe+7q/4n8Mnq2O1ibHD9mMfuf8AlflrqHEpWkVtXDSwfbLpWMbbxy7x4Erhm2d8b/vFUpqaWd7Yo2STyHsxtDpHeJA/FHjrvqf43wy+7a97yt5V00NM/DcLdtRMMtZW90jdxjj0s5pBIuNLGwvclc8BX1cT5MVtOza1FHPFHpeRzLsHmRew81+HD6CWd4ip4nzSEEiNjcziBvNuCbHU73tTjrqRFaCrYhQSwP2VRE+GSwdke3K7Kb2NuGhX7MK5OVlS3PTUk8zAbZ2s6l+AcbApuU9hp84FaCv04lhc9O7JUwSQPIuA9hbmHfa+h+ivTYBVyQ9IjpZnwWc7atjJZZpIcb+Fj6I8572HGvwXTAqYK26bZdKByLpLoutsNKXWOOhS3WOOh8isGnRVqLISbPp4aYdZ3zO91MhfomHWd8zvdTyq2nLySssLVUtWELaGZJELo/M5jtJTOqGVUkcEsxj2cshDGOa292ZzoDcg27/oueEL0/IrlJT0e3bU0Qq2ThgJu0lrW36uR4sRc3vdR82NuFkW8WWsnQuV2F4nJR1WwxGGtp5WOJj6O2ObZDrObHKxxa4kC1iNQV8/mjww02H1OJ7F00szX7CNrSZJIo72a0b+s8H6BpXzK7nKp46aSmwugNJtc13lscYYXizntYwkF9t19N177lDFOdBzaanpsMifRCANYXPEUt4msytYAQRvsSfBccw8muOnVc8N72+lz2YNtIKbE2MLC1rYZ2luV7WP1jzDuLXOLf2176mpIJsNpKapDXR1FNTxZCbF7tiHAN/SGUkW16q5bFzmbWhno8ShkqnztkZto9nFZjm9XqgAZmm5vbuC/Jym5ftqMPpaOKGaGWmdTOE+dts0UZbdtjcG+oQ+PO6n4Mzx9uh8osPNBgEkLH53UjGmOQt7WWpD2Ejjuujmo5TVNfT1MlW5jnxTiNpbGIwG7Jrtw36krwmNc53SsNkopqd/SZI2xvnaWiIuDgc2XeL23cSvx83fLyPDYZ4pKeWYzSiUFjmgNAjDbEOPgj8V43c7bnN9PnPxatxuqoqWocxx2jmtLIxHkjflMrjbg1l/p4rvNmF5w3oz+i9Dttch6OW32exzbs2XWy4JzecpoMNmkqJqeWeQxiKPI5o2YJu++bvNmj6Hivpt52MQ6TtTIOi7bN0XZRX2GfsZ8t75dL33o5+PK9Semxyn28hygwh1JVT0j7kwSFgcfts3sf8AVpBXXeaeBlNg1RiEcQkqXdJe7TrOEOYMjvvt1b2/SK55zhcpoMRnjqYYJYJBHspc7muEgabxkZTvF3eo4L9HIDl7JhueJ0e3pZHZ3R5sr2PsBmYTpqALg6d+nfTKZZYQJqV+l3OziL4J439Hftm5RKIbCBrtDYXIdcGwzfx3L1HMrg5hpanFHRue97XxU7Gtu90cerg0Dvc8Zf2Avm4vzmUJp54aPCWsdUtLZDLHE2Ikg6lsZJfa9wLjzC/NW86Zjo6ekwuGSkMGzZtJNnLeNrCCA03GYusb248VO45Wak0bc32+7zzYQaihpsTbE+KWJjGzRubaRkc1rB43gsebftFeiwLG6eroIIMNxGGhnjjjbsyyOSSMtbZzTC4gkX7xv4rwWH86hfSVFJikMlZtxJHtIxFFaJ7MpaQLajUghPQ8v8K2MEdTgxe6mjZHG4NhmtkFgczy0+PqkuGWta9DLNpc5mB4lJWUUdVLFUmcilppYojEzOXguL47nKbEEkG1mHguuUEbaU0mHR08joBTSAzZCYmFmUBrza133efp4rls3OzHJWxVMtHJsKVknR4mvYX7aQBpkkJ00bdoA3Zjqe75eIc7Ne6pdJBIIqbaNcymdFC4iMWu1z8pNzY3IOl9EbhnlJNem3jO3n+WuBmirp6W1ow7aQ+MDySz01b+yV8S69hzjcsIMSMEkdNLBNCHsc5zmObJG6xA01uCNPmK8bddfjt4zaOUm+j3RdJdbdOXRwVjjofIpVjzofIohp0y6EIUz6eOlHWd5n3SZVeUanzKQhdenlcki1KWqxCUhDRpkiQlLVYhKQho8qRCQhVISkIWHmT7+HYPTPgpJJZRE90kpmaX2NTC2XKGRX3SXs3T4832Tf8ANJRRxiskFP0nY1xpGRZ5A2OO8xDiWEOJOza0XNte86L5Jcerq6zblozGzbm5yju110TQ1cjHF8cssb3XzPZK9j3XNzdwNzrrqoXDL9Xmcfa/sSDaYjCXFphkihppC42ilke4NbJ3EXAYSd2ru5I3DoY8RlpZKcPY2N5DHSysdG9lEZiLscCesLEG+m6y+AXGxF3WdYuGY2cQSRcd+87+KHTPzF5e8vN7vzkvN25Td2/dp5Jfjy/TzKPsYTSwPpp6iWKIOFRHHG1xqnMY18UjsrRCS4m7Rq/TTeo0dHHJRyOZG11TG2eaQyGZtoWZetA5p2bi27szXam+nBfOpqyWMOEU00Qd2gyV8Yda9rhpF96QVcgYYhLIInG7ohI4RuPEsBsfqtwppY/bhsDBTzVDoOkuZNTwiIuka2NsjZSZHbMhxuYw0agXJ37lM0YNGJww7TpkkRIzECMQseBbwLjqvy01VJGc0UskTrZS6OR0biOBLSDbwRFXSsa5rJpmNfcva2Z7GvJ0Jc0GztNNVuN2aWPtNwFv9nGfTpNjVNbtmh3RGv2ZGyvf4pM1uy1Xq8Ip20AmDWbXolNNdsk7pxLJOW5nsP5NsJa1wuNc2Ud+vmds698775dnfO6+ztbJv7Nja26yNu/439jZ9t3+He+Tf2b65dyW4Zfptx6E4bFsyzo5BGGNr+l55LmUwiTJa+TJmOzta9xe99F+WpoojRMmhjbnjbH0l7jK2Zr5JHBpYD+TfE6zQCOsO9fJNZJs9jtZdje+x2rtle975L5b/RY+skLGxOlkdEw3bEZHGNp/RYTYbzuC3G/rdJICy6FUDXQsQsGjXRdLdF1mNdY/cfIoulfuPkVm06ddalQk2LzMg1PmUparyDU+ZSELv08HkiWpS1XLUpaho0yQLUpCs5qUhCxSZIEJCFYtSOCXSkyRISkKrgkcEqsqRCQhVISEJapKmQlKoQkIQUlIUioQlKU8IhassgaMKxaUqxghCCgwWpULCZCVaszbrHnQ+RRdK86HyKwOn3QsQkF8SQanzKUhWc3U+ZSlq9PT5nkiQlLVYtSEIWGmSJCQhWLUrglsVmSBCmQv0OCm4JbFcag4JHBWIUyEtVlSISFVISOS1aVEhIrEKZSqypkJbJylKVSEKwpilKU8KVi1YVjMWLViAhCEICEIQiwWP3HyK1Y/cfIrM6chCEuhfMeNSlLVZwSuC9XT5HkkWpHBVLUpCFPKgQpuC/RZTcEtisqBSEKzgkcEliuNQcFMhWcFNwS1fGouSEKpCm4JKtjUikcqkKZCWqypFKVQpClVhEpCZKUqkKlTLCgaFWLViBgEICEBCEIWYLH7j5FasfuPkUWdOQhCBn43BKWqpSFer0+M7TLVNysUhQp5tEhI4KxU3JVcUXBTKq5TcfFJVsUXBI4Krj4qTj4pKvik5TKq4hScQlq2KblNwVHOHEKbnDiElWxIVMqjnDiFMuHEeqWq4lKUrXOHEeqUvHEeqVSMKVaXjiPVLnHEeqB4FhWF44j1WF44j1WM0IS5xxHqjOOI9UpjIS5xxHqjOOI9VmMsfuPkVmccR6rHvFjqNx70WdQQi6xLsz6x3LChC9KvlWNWtQhC+jfQG9KVqEo4latKEJKvixY9CFOr4s71hQhL9Kxi0oQgriFjVqElUjAtQhBSMKUrUJaeMCChCJoxCEJaMCEIQEJX7j5IQiz1yEIUmf/Z" style="width:56px;height:56px;object-fit:cover;border-radius:16px"></div>
   <div class="ld-bar"><div class="ld-bar-fill" id="ldbar"></div></div>
@@ -396,9 +459,9 @@ body{background:radial-gradient(ellipse 80% 60% at 20% 10%,#112b57 0%,#071427 50
     <div class="si on" data-m="0" onclick="goMod(0)"><div class="ic">📊</div><span class="si-lbl">Metas AIH's</span></div>
     <div class="si" data-m="1" onclick="goMod(1)"><div class="ic">💰</div><span class="si-lbl">Valores por AIH's</span></div>
     <div class="si" data-m="2" onclick="goMod(2)"><div class="ic">🏥</div><span class="si-lbl">Diárias de UTI</span></div>
-    <div class="si dim"><div class="ic">📋</div><span class="si-lbl">Contratos</span></div>
-    <div class="si dim"><div class="ic">📈</div><span class="si-lbl">Relatórios</span></div>
-    <div class="si dim"><div class="ic">⚙️</div><span class="si-lbl">Configurações</span></div>
+    <div class="si dim" data-m="3" onclick="goMod(3)" style="pointer-events:auto;opacity:.6"><div class="ic">📋</div><span class="si-lbl">Contratos</span></div>
+    <div class="si dim" data-m="4" onclick="goMod(4)" style="pointer-events:auto;opacity:.6"><div class="ic">📈</div><span class="si-lbl">Relatórios</span></div>
+    <div class="si dim" data-m="5" onclick="goMod(5)" style="pointer-events:auto;opacity:.6"><div class="ic">⚙️</div><span class="si-lbl">Configurações</span></div>
   </nav>
   <!-- Filtros removidos conforme solicitado -->
 
@@ -880,7 +943,7 @@ function demoResumo(){
   var c=function(r,v,co,m,d,g,l){return{real:r,val:v,contr:co,meta:m,dif:d,gval:g,lbl:l};};
   var u=function(r,v,co,m,d,g,l){return{dias:r,val:v,contr:co,meta:m,dif:d,gval:g,lbl:l};};
   return{
-    competencia:'07/2026',meta_aih:1635,prod_geral:295,ating_pct:0.180428,diferenca:-1340,
+    competencia:'07/2026',meta_aih:1635,prod_geral:295,ating_pct:0.1804,diferenca:-1340,
     cir: {lbl:'CIRURGICA',labelOnly:true,real:0,val:0,contr:0,meta:0,dif:0,gval:0},
     elet:c( 21,  42284.80,  82,  61471.63,  -61,  -19186.83,'Eletivo'),
     urg: c( 60, 148607.71, 344, 554200.76, -284, -405593.05,'Urgencia'),
@@ -899,30 +962,30 @@ function demoResumo(){
     n_mac:219,  tot_mac_val:473712.95,
     n_media:219,tot_media_val:473712.73,
     n_alta:28,  tot_alta_val:273360.00,
-    tot_val:747072.95,ticket:2532.45,
+    tot_val:1171080.68,ticket:3969.42,
   };
 }
 function demoProducao(){
   return {
     tQ:[
-      ['TRATAMENTO DE ACIDENTE VASCU',16],['DIAGNOSTICO E/OU ATENDIMENTO',15],
-      ['TRATAMENTO CIRÚRGICO DE FRAT',14],['TRATAMENTO CLÍNICO DE PACIENT',11],
-      ['TRATAMENTO DE INTERCORRÊNCI',11],['TRATAMENTO ODONTOLÓGICO PAR',9],
-      ['TRATAMENTO DE OUTRAS DOENÇA',8],['DEBRIDAMENTO DE ULCERA / DE T',8],
-      ['TRATAMENTO CONSERVADOR DE T',8],['TRATAMENTO DE OUTRAS DOENCA',7],
-      ['TRATAMENTO DE INTERCORRENCI',7],['TRATAMENTO DE GRANDE QUEIMA',6],
-      ['PARTO NORMAL EM GESTAÇÃO DE',5],['TRATAMENTO CONSERVADOR DA H',5],
-      ['AÇÕES RELACIONADAS A DOAÇÃO',5]
+      ['DEBRIDAMENTO DE ULCERA / DE T',39],['DIAGNOSTICO E/OU ATENDIMENTO',33],
+      ['PARTO NORMAL',28],['OPERAÇÃO CESARIANA EM GESTA',22],
+      ['TRATAMENTO CLÍNICO DE PACIENT',21],['TRATAMENTO DE INTERCORRÊNCI',17],
+      ['PARTO NORMAL EM GESTAÇÃO DE',16],['TRATAMENTO CONSERVADOR DE T',14],
+      ['TRATAMENTO DE OUTRAS DOENCA',13],['ESVAZIAMENTO DE UTERO POS-AB',13],
+      ['TRATAMENTO DE OUTRAS DOENÇA',12],['OPERAÇÃO CESARIANA COM LAQU',11],
+      ['TRATAMENTO CIRÚRGICO DE FRAT',9],['TRATAMENTO DE ACIDENTE VASCU',8],
+      ['TRATAMENTO DE INTERCORRENCI',8]
     ],
     tV:[
-      ['TRATAMENTO DE GRANDE QUEIMA',89813.27],['REVASCULARIZAÇÃO MIOCÁRDICA',67598.45],
-      ['ANGIOPLASTIA CORONARIANA PRIM',63788.48],['TRANSPLANTE AUTOGENICO DE CE',46460.14],
-      ['EMBOLIZAÇÃO DE ANEURISMA CER',43142.55],['AÇÕES RELACIONADAS A DOAÇÃO',33726.39],
-      ['ANGIOPLASTIA CORONARIANA C/ IM',32463.41],['TRATAMENTO DE EMBOLIA PULMO',32295.19],
-      ['TRATAMENTO DE OUTRAS INFECCO',29706.51],['TRATAMENTO DE ACIDENTE VASCU',27227.34],
-      ['TRATAMENTO DE TRANSTORNOS R',24515.52],['VITRECTOMIA POSTERIOR COM INF',23860.35],
-      ['TRATAMENTO CIRÚRGICO DE FRAT',23072.54],['DEBRIDAMENTO DE ULCERA / DE T',19999.14],
-      ['TRATAMENTO CONSERVADOR DA H',19755.93]
+      ['REVASCULARIZAÇÃO MIOCÁRDICA',60240.02],['DEBRIDAMENTO DE ULCERA / DE T',56472.33],
+      ['TRATAMENTO DE OUTRAS DOENCA',55765.54],['TRANSPLANTE DE RIM (ORGAO DE',41704.33],
+      ['TRATAMENTO DE OUTRAS DOENÇA',41399.76],['TROCA VALVAR C/ REVASCULARIZA',26955.84],
+      ['IMPLANTE DE MARCAPASSO DE CÂ',26556.21],['PLÁSTICA VALVAR E/OU TROCA VA',26106.01],
+      ['TRATAMENTO DE TRANSTORNOS R',24047.06],['TRANSPLANTE AUTOGENICO DE CE',23531.23],
+      ['OPERAÇÃO CESARIANA EM GESTA',23321.62],['TRANSPLANTE AUTOGENICO DE CE',23091.87],
+      ['TRATAMENTO DE INTERCORRENCI',22523.35],['DERIVAÇÃO VENTRICULAR EXTERN',22094.70],
+      ['TRATAMENTO DE ACIDENTE VASCU',19025.82]
     ]
   };
 }
@@ -963,12 +1026,55 @@ function toggleSb(){
 
 /* ── Module switch ── */
 var MNAMES=['Metas AIH\'s','Valores por AIH\'s','Diárias de UTI'];
+var _PWD='3643';
+var _PWD_MODS={1:true,2:true,3:true,4:true,5:true};
+var _PWD_TARGET=0;
+function _isUnlocked(m){try{return sessionStorage.getItem('sc_unlock_'+m)==='1';}catch(x){return false;}}
+function _unlock(m){try{sessionStorage.setItem('sc_unlock_'+m,'1');}catch(x){}}
 function goMod(i){
+  if(_PWD_MODS[i]&&!_isUnlocked(i)){
+    _PWD_TARGET=i;
+    var names=["Metas AIHs","Valores por AIHs","Dias de UTI","Contratos","Relatorios","Configuracoes"];
+    var el=document.getElementById('pwd-modname');
+    if(el) el.textContent=names[i]||'Módulo Restrito';
+    var inp=document.getElementById('pwd-input');
+    if(inp) inp.value='';
+    var err=document.getElementById('pwd-err');
+    if(err) err.textContent='';
+    var modal=document.getElementById('pwd-modal');
+    if(modal){modal.classList.add('show');setTimeout(function(){if(inp)inp.focus();},80);}
+    return;
+  }
   document.querySelectorAll('.mod').forEach(function(m,j){m.classList.toggle('on',j===i);});
   document.querySelectorAll('.si[data-m]').forEach(function(el,j){el.classList.toggle('on',j===i);});
   try{document.getElementById('hPill').textContent=MNAMES[i]||'';}catch(e){}
   try{document.getElementById('scrl').scrollTop=0;}catch(e){}
 }
+function confirmPwd(){
+  var inp=document.getElementById('pwd-input');
+  var v=inp?inp.value:'';
+  if(v===_PWD){_unlock(_PWD_TARGET);closePwd();goMod(_PWD_TARGET);}
+  else{
+    var err=document.getElementById('pwd-err');
+    if(err) err.textContent='Senha incorreta.';
+    if(inp){inp.value='';inp.focus();}
+  }
+}
+function closePwd(){
+  var modal=document.getElementById('pwd-modal');
+  if(modal) modal.classList.remove('show');
+  var inp=document.getElementById('pwd-input');
+  if(inp) inp.value='';
+  var err=document.getElementById('pwd-err');
+  if(err) err.textContent='';
+}
+document.addEventListener('keydown',function(e){
+  var modal=document.getElementById('pwd-modal');
+  if(modal&&modal.classList.contains('show')){
+    if(e.key==='Enter') confirmPwd();
+    if(e.key==='Escape') closePwd();
+  }
+});
 
 /* ── Progress bar ── */
 function mkPB(p){
@@ -1417,6 +1523,30 @@ async function init(){
     },300);
   }
 }
+/* ═══ LOGIN ═══════════════════════════════════════════════════ */
+var _LK='sc_painel_auth';
+function doLogin(){
+  var u=document.getElementById('lg-user').value.trim();
+  var p=document.getElementById('lg-pass').value;
+  var err=document.getElementById('lg-err');
+  if(u==='Faturamento'&&p==='Santacasa@3643'){
+    try{sessionStorage.setItem(_LK,'1');}catch(x){}
+    document.getElementById('login-screen').style.display='none';
+    err.classList.remove('show');
+  }else{
+    err.classList.add('show');
+    document.getElementById('lg-pass').value='';
+    document.getElementById('lg-pass').focus();
+  }
+}
+(function(){
+  try{if(sessionStorage.getItem(_LK)==='1'){document.getElementById('login-screen').style.display='none';}}catch(x){}
+  ['lg-user','lg-pass'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(el) el.addEventListener('keydown',function(e){if(e.key==='Enter')doLogin();});
+  });
+})();
+
 init();
 </script>
 </body>
