@@ -1549,6 +1549,29 @@ function doLogin(){
 
 init();
 </script>
+
+<!-- ═══ AUTO-REFRESH GITHUB PAGES ════════════════════════════ -->
+<script>
+(function(){
+  var _url=location.href.split('?')[0];
+  var _lastMod=null;
+  function checkUpdate(){
+    fetch(_url,{method:'HEAD',cache:'no-cache'})
+      .then(function(r){
+        var mod=r.headers.get('last-modified')||r.headers.get('etag')||'';
+        if(_lastMod===null){_lastMod=mod;}
+        else if(mod&&mod!==_lastMod){
+          console.log('[SC] Atualização detectada — recarregando...');
+          location.reload(true);
+        }
+      }).catch(function(){});
+  }
+  // Verificar a cada 5 minutos
+  setInterval(checkUpdate, 5*60*1000);
+  // Primeira verificação após 10 segundos
+  setTimeout(checkUpdate, 10000);
+})();
+</script>
 </body>
 </html>
 
