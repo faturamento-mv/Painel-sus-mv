@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<meta name="sc-version" content="20260715145413">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Painel SUS · Santa Casa Montes Claros</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1550,26 +1551,31 @@ function doLogin(){
 init();
 </script>
 
-<!-- ═══ AUTO-REFRESH GITHUB PAGES ════════════════════════════ -->
+
+<!-- ═══ AUTO-REFRESH GITHUB PAGES v20260715145413 ════════════════ -->
 <script>
 (function(){
-  var _url=location.href.split('?')[0];
-  var _lastMod=null;
-  function checkUpdate(){
-    fetch(_url,{method:'HEAD',cache:'no-cache'})
-      .then(function(r){
-        var mod=r.headers.get('last-modified')||r.headers.get('etag')||'';
-        if(_lastMod===null){_lastMod=mod;}
-        else if(mod&&mod!==_lastMod){
-          console.log('[SC] Atualização detectada — recarregando...');
+  var CURRENT_VER='20260715145413';
+  var PAGE_URL=location.href.split('?')[0].split('#')[0];
+  // Garante URL sem cache
+  if(PAGE_URL.slice(-1)==='/') PAGE_URL+='index.html';
+
+  function checkVersion(){
+    fetch(PAGE_URL+'?_='+Date.now(),{cache:'no-store'})
+      .then(function(r){return r.text();})
+      .then(function(txt){
+        var m=txt.match(/name="sc-version"\s+content="([^"]+)"/);
+        if(m&&m[1]&&m[1]!==CURRENT_VER){
+          console.log('[SC] Nova versão detectada: '+m[1]+' — recarregando...');
           location.reload(true);
         }
       }).catch(function(){});
   }
-  // Verificar a cada 5 minutos
-  setInterval(checkUpdate, 5*60*1000);
-  // Primeira verificação após 10 segundos
-  setTimeout(checkUpdate, 10000);
+
+  // Verificar a cada 3 minutos
+  setInterval(checkVersion, 3*60*1000);
+  setTimeout(checkVersion, 15000);
+  console.log('[SC] Auto-refresh ativo. Versão atual: '+CURRENT_VER);
 })();
 </script>
 </body>
