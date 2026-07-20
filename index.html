@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="sc-version" content="20260716193546">
+<meta name="sc-version" content="20260720121452">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Painel SUS · Santa Casa Montes Claros</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -944,26 +944,26 @@ function demoResumo(){
   var c=function(r,v,co,m,d,g,l){return{real:r,val:v,contr:co,meta:m,dif:d,gval:g,lbl:l};};
   var u=function(r,v,co,m,d,g,l){return{dias:r,val:v,contr:co,meta:m,dif:d,gval:g,lbl:l};};
   return{
-    competencia:'07/2026',meta_aih:1635,prod_geral:954,ating_pct:0.5835,diferenca:-681,
+    competencia:'07/2026',meta_aih:1635,prod_geral:1017,ating_pct:0.6220,diferenca:-618,
     cir: {lbl:'CIRURGICA',labelOnly:true,real:0,val:0,contr:0,meta:0,dif:0,gval:0},
-    elet:c(738,1289083.90,  82,  61471.63,  656, 1227612.27,'Eletivo'),
-    urg: c(188, 387051.19, 344, 554200.76, -156, -167149.57,'Urgencia'),
-    cli: c(364, 698448.67, 360, 472909.04,    4,  225539.63,'CLÍNICO/PEDIATRIA'),
-    obs: c(189, 175289.77, 303, 247857.03, -114,  -72567.26,'OBSTETRÍCIA'),
-    mTot:c(740,1292287.56,1089,1336438.46, -349, 1292636.56,"Total AIH's de Média Complexidade - MAC"),
-    alta:c(143,1068751.57, 229,1426994.18,  -86, -358242.61,"Total AIH's de  ALTA COMPLEXIDADE - MAC"),
+    elet:c( 98, 112423.71,  82,  61471.63,   16,   50952.08,'Eletivo'),
+    urg: c(203, 455937.43, 344, 554200.76, -141,  -98263.33,'Urgencia'),
+    cli: c(382, 793481.22, 360, 472909.04,   22,  320572.18,'CLÍNICO/PEDIATRIA'),
+    obs: c(102,  95475.13, 303, 247857.03, -201, -152381.90,'OBSTETRÍCIA'),
+    mTot:c(785,1457317.49,1089,1336438.46, -304, 1457621.49,"Total AIH's de Média Complexidade - MAC"),
+    alta:c(161, 110381.86, 229,1426994.18,  -68,-1316612.32,"Total AIH's de  ALTA COMPLEXIDADE - MAC"),
     uti:{
       adulto:u(186, 143100.96,330,253888.80,-144, -110787.84,'Diaria UTI ADULTO (UTI II)'),
-      ped:   u(156, 129798.24, 30, 24961.20, 126,  104837.04,'Diaria UTI PEDIATRICA (UTI II)'),
-      neo:   u(146, 130944.48,210,188344.80, -64,  -57400.32,'Diaria UTI NEONATAL UTIN (TIPO II)'),
+      ped:   u(167, 138950.68, 30, 24961.20, 137,  113989.48,'Diaria UTI PEDIATRICA (UTI II)'),
+      neo:   u(213, 191035.44,210,188344.80,   3,    2690.64,'Diaria UTI NEONATAL UTIN (TIPO II)'),
       que:   u(  3,   2100.00, 30, 21000.00, -27,  -18900.00,'QUEIMADOS'),
-      total: u(491, 405943.68,600,488194.80,-109,  406052.68,'Total Geral de DIARIAS DE UTI'),
+      total: u(569, 475187.08,600,488194.80, -31,  475218.08,'Total Geral de DIARIAS DE UTI'),
     },
-    n_faec:71,  tot_faec_val:692706.60,
-    n_mac:740,  tot_mac_val:1292287.56,
-    n_media:740,tot_media_val:1292287.56,
-    n_alta:143, tot_alta_val:1068751.57,
-    tot_val:3053745.73,ticket:3200.99,
+    n_faec:71,   tot_faec_val:749507.26,
+    n_mac:785,   tot_mac_val:1457317.49,
+    n_media:785, tot_media_val:1457317.49,
+    n_alta:161,  tot_alta_val:110381.86,
+    tot_val:3317206.61,ticket:3261.76,
   };
 }
 function demoProducao(){
@@ -1555,7 +1555,7 @@ init();
 <!-- ═══ AUTO-REFRESH GITHUB PAGES v20260716141759 ════════════════ -->
 <script>
 (function(){
-  var CURRENT_VER='20260716193546';
+  var CURRENT_VER='20260720121452';
   var PAGE_URL=location.href.split('?')[0].split('#')[0];
   // Garante URL sem cache
   if(PAGE_URL.slice(-1)==='/') PAGE_URL+='index.html';
